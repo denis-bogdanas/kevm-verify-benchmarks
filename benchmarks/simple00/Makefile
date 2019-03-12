@@ -3,8 +3,8 @@ BUILD_DIR:=../.build
 LOCAL_LEMMAS:=../abstract-semantics.k ../verification.k
 TMPLS:=../module-tmpl.k ../spec-tmpl.k
 
-SPEC_GROUP:=simple00
 SPEC_INI:=spec.ini
+SPECS_DIR:=./generated-k
 
 KPROVE_OPTS:=--smt-prelude $(abspath $(dir $(abspath $(lastword $(MAKEFILE_LIST))))/../evm.smt2)
 

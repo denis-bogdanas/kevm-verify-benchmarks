@@ -13,10 +13,6 @@ endif
 K_REPO_URL?=https://github.com/kframework/k
 KEVM_REPO_URL?=https://github.com/kframework/evm-semantics
 
-ifndef SPEC_GROUP
-$(error SPEC_GROUP is not set)
-endif
-
 ifndef SPEC_NAMES
 $(error SPEC_NAMES is not set)
 endif
@@ -40,8 +36,6 @@ ROOT:=$(abspath $(dir $(THIS_FILE))/../)
 
 RESOURCES:=$(ROOT)/resources
 
-SPECS_DIR:=$(ROOT)/specs
-
 K_VERSION   :=$(shell cat $(BUILD_DIR)/.k.rev)
 KEVM_VERSION:=$(shell cat $(BUILD_DIR)/.kevm.rev)
 
@@ -57,7 +51,7 @@ KPROVE:=$(K_BIN)/kprove -v --debug -d $(KEVM_REPO_DIR)/.build/java -m VERIFICATI
         --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,\#pc,\#result \
         $(KPROVE_OPTS)
 
-SPEC_FILES:=$(patsubst %,$(SPECS_DIR)/$(SPEC_GROUP)/%-spec.k,$(SPEC_NAMES))
+SPEC_FILES:=$(patsubst %,$(SPECS_DIR)/%-spec.k,$(SPEC_NAMES))
 
 PANDOC_TANGLE_SUBMODULE:=$(ROOT)/.build/pandoc-tangle
 TANGLER:=$(PANDOC_TANGLE_SUBMODULE)/tangle.lua
@@ -102,9 +96,9 @@ $(TANGLER):
 # Specs
 #
 
-split-proof-tests: $(SPECS_DIR)/$(SPEC_GROUP) $(SPECS_DIR)/lemmas.k $(SPEC_FILES)
+split-proof-tests: $(SPECS_DIR) $(SPECS_DIR)/lemmas.k $(SPEC_FILES)
 
-$(SPECS_DIR)/$(SPEC_GROUP): $(LOCAL_LEMMAS)
+$(SPECS_DIR): $(LOCAL_LEMMAS)
 	mkdir -p $@
 ifneq ($(strip $(LOCAL_LEMMAS)),)
 	cp $(LOCAL_LEMMAS) $@
@@ -118,7 +112,7 @@ endif
 $(SPECS_DIR)/lemmas.k: $(RESOURCES)/lemmas.md $(TANGLER)
 	pandoc --from markdown --to "$(TANGLER)" --metadata=code:".k" $< > $@
 
-$(SPECS_DIR)/$(SPEC_GROUP)/%-spec.k: $(TMPLS) $(SPEC_INI)
+$(SPECS_DIR)/%-spec.k: $(TMPLS) $(SPEC_INI)
 	python3 $(RESOURCES)/gen-spec.py $(TMPLS) $(SPEC_INI) $* $* > $@
 
 #
@@ -127,5 +121,5 @@ $(SPECS_DIR)/$(SPEC_GROUP)/%-spec.k: $(TMPLS) $(SPEC_INI)
 
 test: $(addsuffix .test,$(SPEC_FILES))
 
-$(SPECS_DIR)/$(SPEC_GROUP)/%-spec.k.test: $(SPECS_DIR)/$(SPEC_GROUP)/%-spec.k
+$(SPECS_DIR)/%-spec.k.test: $(SPECS_DIR)/%-spec.k
 	$(KPROVE) $<
