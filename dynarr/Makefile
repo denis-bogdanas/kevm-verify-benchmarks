@@ -1,7 +1,6 @@
 BUILD_DIR:=../.build
 
-LOCAL_LEMMAS:=../resources/abstract-semantics.k ../resources/verification.k \
-                ../resources/evm-symbolic.k ../resources/ecrec-symbolic.k
+LOCAL_LEMMAS:=../resources/abstract-semantics.k ../resources/verification.k
 TMPLS:=../resources/module-tmpl.k ../resources/spec-tmpl.k
 
 SPEC_INI:=spec.ini

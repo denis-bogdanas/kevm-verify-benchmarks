@@ -25,6 +25,12 @@ TMPLS?=module-tmpl.k spec-tmpl.k
 KPROVE_OPTS?=
 KPROVE_OPTS+=$(EXT_KPROVE_OPTS)
 
+# Define variable DEBUG to enable debug options below
+#DEBUG=true
+ifdef DEBUG
+KPROVE_OPTS+=--debug-z3-queries --log-rules
+endif
+
 #
 # Settings
 #
