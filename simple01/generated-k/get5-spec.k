@@ -15,7 +15,7 @@ module GET5-SPEC
     <analysis> .Map </analysis> // not part of evm
     <ethereum>
       <evm>
-        <output> _ => #encodeArgs(#bytes32(5)) </output>
+        <output> _ => #encodeArgs(#uint256(5)) </output>
         <statusCode> _ => EVMC_SUCCESS </statusCode>
         <callStack> _ </callStack>
         <interimStates> _ </interimStates>
