@@ -10,6 +10,6 @@ SPECS_DIR:=./generated-k
 KPROVE_OPTS:=--smt-prelude $(abspath $(dir $(abspath $(lastword $(MAKEFILE_LIST))))/../resources/evm.smt2)
 
 #List of the top-level eDSL rules to check
-SPEC_NAMES:=len
+SPEC_NAMES:=get
 
 include ../resources/kprove.mak
