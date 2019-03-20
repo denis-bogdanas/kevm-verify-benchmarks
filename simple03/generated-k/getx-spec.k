@@ -105,6 +105,7 @@ _
 
 andBool #rangeUInt(256, CONTRACT_BAL)andBool #range(0 <= CD < 1024)
 andBool #rangeAddress(MSG_SENDER)
+andBool #rangeUInt(256, X)
     ensures true
 
 
