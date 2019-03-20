@@ -25,7 +25,7 @@ module GETLENGTH-SPEC
           <programBytes> #parseByteStack("0x608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680631a9c7401146044575b600080fd5b348015604f57600080fd5b50607a6004803603810190808035906020019082018035906020019190919293919293905050506090565b6040518082815260200191505060405180910390f35b6000828290509050929150505600a165627a7a723058203dde8facc20f54388ed93e3ad6a49b6dc364c7dbd04e63c2990e581fb5c154d80029") </programBytes>
           <id> #CONTRACT_ID </id> // this
           <caller> MSG_SENDER </caller> // msg.sender
-          <callData> #abiCallData("getLength", #array(#uint256(_), _, _)) </callData> // msg.data
+          <callData> #abiCallData("getLength", #array(#uint256(_), X_LEN, _)) </callData> // msg.data
           <callValue> 0 </callValue> // msg.value
           <wordStack> .WordStack => _ </wordStack>
           <localMem> .Map => _ </localMem>
@@ -105,6 +105,7 @@ _
 
 andBool #rangeUInt(256, CONTRACT_BAL)andBool #range(0 <= CD < 1024)
 andBool #rangeAddress(MSG_SENDER)
+andBool #rangeUInt(256, X_LEN)
     ensures true
 
 
