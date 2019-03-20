@@ -1,8 +1,8 @@
-pragma solidity ^0.5.5;
+pragma solidity 0.4.24;
 
 contract simple01 {
 
-    function get(uint x) pure external returns (uint) {
-        return x;
+    function get5(uint x) pure external returns (uint) {
+        return 5;
     }
 }
