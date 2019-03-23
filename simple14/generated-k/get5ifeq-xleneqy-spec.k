@@ -1,0 +1,117 @@
+requires "abstract-semantics.k"
+requires "verification.k"
+
+module GET5IFEQ-XLENEQY-SPEC
+  imports ETHEREUM-SIMULATION
+  imports ABSTRACT-SEMANTICS
+  imports VERIFICATION
+
+  // get5ifeq-xleneqy 
+  rule
+    <k> (#execute => #halt) ~> _ </k>
+    <exit-code> 1 </exit-code>
+    <mode> NORMAL </mode>
+    <schedule> BYZANTIUM </schedule>
+    <analysis> .Map </analysis> // not part of evm
+    <ethereum>
+      <evm>
+        <output> _ => #encodeArgs(#uint256(5)) </output>
+        <statusCode> _ => EVMC_SUCCESS </statusCode>
+        <callStack> _ </callStack>
+        <interimStates> _ </interimStates>
+        <touchedAccounts> _ => _ </touchedAccounts>
+        <callState>
+          <program> #asMapOpCodes(#dasmOpCodes(#parseByteStack("0x6080604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063a466d02d14604e578063a56dfe4a1460a4575b600080fd5b348015605957600080fd5b50608e6004803603810190808035906020019092919080359060200190820180359060200191909192939192939050505060cc565b6040518082815260200191505060405180910390f35b34801560af57600080fd5b5060b660ea565b6040518082815260200191505060405180910390f35b600080548383905014151560df57600080fd5b600590509392505050565b600054815600a165627a7a72305820a7930eba29a82f819c6cfea00eb1f8ccc8f21fca53c8a841641ebe8e77e388f90029"), BYZANTIUM)) </program>
+          <programBytes> #parseByteStack("0x6080604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063a466d02d14604e578063a56dfe4a1460a4575b600080fd5b348015605957600080fd5b50608e6004803603810190808035906020019092919080359060200190820180359060200191909192939192939050505060cc565b6040518082815260200191505060405180910390f35b34801560af57600080fd5b5060b660ea565b6040518082815260200191505060405180910390f35b600080548383905014151560df57600080fd5b600590509392505050565b600054815600a165627a7a72305820a7930eba29a82f819c6cfea00eb1f8ccc8f21fca53c8a841641ebe8e77e388f90029") </programBytes>
+          <id> #CONTRACT_ID </id> // this
+          <caller> MSG_SENDER </caller> // msg.sender
+          <callData> #abiCallData("get5ifeq", #uint256(X), #array(#bytes32(_), ZARR_LEN, _)) </callData> // msg.data
+          <callValue> 0 </callValue> // msg.value
+          <wordStack> .WordStack => _ </wordStack>
+          <localMem> .Map => _ </localMem>
+          <pc> 0 => _ </pc>
+          <gas> #gas(INITGAS, 0, 0) => _ </gas>
+          <memoryUsed> 0 => _ </memoryUsed>
+          <previousGas> _ => _ </previousGas>
+          <static> false </static> // NOTE: non-static call
+          <callDepth> CD </callDepth>
+        </callState>
+        <substate>
+          <selfDestruct> _ </selfDestruct>
+          <log> _ </log>
+          <refund> _ </refund>
+        </substate>
+        <gasPrice> _ </gasPrice>
+        <origin> _ </origin> // tx.origin
+        <previousHash> _ </previousHash>
+        <ommersHash> _ </ommersHash>
+        <coinbase> _ => _ </coinbase> // block.coinbase
+        <stateRoot> _ </stateRoot>
+        <transactionsRoot> _ </transactionsRoot>
+        <receiptsRoot> _ </receiptsRoot>
+        <logsBloom> _ </logsBloom>
+        <difficulty> _ </difficulty>
+        <number> BLOCK_NUM </number> // block.number
+        <gasLimit> _ </gasLimit>
+        <gasUsed> _ </gasUsed>
+        <timestamp> NOW </timestamp> // now = block.timestamp
+        <extraData> _ </extraData>
+        <mixHash> _ </mixHash>
+        <blockNonce> _ </blockNonce>
+        <ommerBlockHeaders> _ </ommerBlockHeaders>
+        <blockhash> BLOCK_HASHES </blockhash> // block.blockhash
+      </evm>
+      <network>
+        <activeAccounts> SetItem(#CONTRACT_ID) SetItem(1) _:Set </activeAccounts>
+        <accounts>
+          <account>
+            <acctID> #CONTRACT_ID </acctID>
+            <balance> CONTRACT_BAL </balance>
+            <code> #parseByteStack("0x6080604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063a466d02d14604e578063a56dfe4a1460a4575b600080fd5b348015605957600080fd5b50608e6004803603810190808035906020019092919080359060200190820180359060200191909192939192939050505060cc565b6040518082815260200191505060405180910390f35b34801560af57600080fd5b5060b660ea565b6040518082815260200191505060405180910390f35b600080548383905014151560df57600080fd5b600590509392505050565b600054815600a165627a7a72305820a7930eba29a82f819c6cfea00eb1f8ccc8f21fca53c8a841641ebe8e77e388f90029") </code>
+            <storage>
+S
+            </storage>
+            <origStorage>
+_
+            </origStorage>
+            <nonce> _ </nonce>
+          </account>
+
+          <account>
+            // precompiled account for ECCREC
+            <acctID> 1 </acctID>
+            <balance> 0 </balance>
+            <code> .WordStack </code>
+            <storage> .Map </storage>
+            <origStorage> .Map </origStorage>
+            <nonce> 0 </nonce>
+          </account>
+
+
+          ...
+        </accounts>
+        <txOrder> _ </txOrder>
+        <txPending> _ </txPending>
+        <messages> _ </messages>
+      </network>
+    </ethereum>
+    requires
+     #rangeAddress(#CONTRACT_ID)
+     andBool #rangeUInt(256, NOW)
+     andBool #rangeUInt(128, BLOCK_NUM) // Solidity
+
+     // Account address normality
+     andBool #CONTRACT_ID  >Int 0 andBool (notBool #CONTRACT_ID  in #precompiledAccounts(BYZANTIUM))
+
+andBool #rangeUInt(256, CONTRACT_BAL)andBool Y ==Int select(S, #hashedLocation("Solidity", 0, .IntList))
+andBool #range(0 <= CD < 1024)
+andBool #rangeAddress(MSG_SENDER)
+andBool #rangeUInt(256, ZARR_LEN)
+andBool #rangeUInt(256, Y)andBool ZARR_LEN ==Int Y
+    ensures true
+
+
+
+
+endmodule
+
