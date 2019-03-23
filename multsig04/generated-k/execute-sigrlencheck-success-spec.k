@@ -107,6 +107,7 @@ andBool #rangeUInt(256, CONTRACT_BAL)andBool THRESHOLD ==Int select(S, #hashedLo
 andBool #range(0 <= CD < 1024)
 andBool #rangeAddress(MSG_SENDER)
 andBool #rangeUInt(256, SIGR_LEN)
+andBool #rangeUInt(256, SIGV_LEN)
 andBool #rangeUInt(256, THRESHOLD)andBool SIGR_LEN ==Int THRESHOLD
     ensures true
 

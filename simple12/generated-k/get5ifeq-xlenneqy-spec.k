@@ -107,7 +107,6 @@ andBool #rangeUInt(256, CONTRACT_BAL)andBool Y ==Int select(S, #hashedLocation("
 andBool #range(0 <= CD < 1024)
 andBool #rangeAddress(MSG_SENDER)
 andBool #rangeUInt(256, XARR_LEN)
-andBool #rangeUInt(256, ZARR_LEN)
 andBool #rangeUInt(256, Y)andBool XARR_LEN =/=Int Y
     ensures true
 

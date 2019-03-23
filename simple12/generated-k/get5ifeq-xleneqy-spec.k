@@ -1,12 +1,12 @@
 requires "abstract-semantics.k"
 requires "verification.k"
 
-module GET5IFEQ-XLENNEQY-SPEC
+module GET5IFEQ-XLENEQY-SPEC
   imports ETHEREUM-SIMULATION
   imports ABSTRACT-SEMANTICS
   imports VERIFICATION
 
-  // get5ifeq-xlenneqy 
+  // get5ifeq-xleneqy 
   rule
     <k> (#execute => #halt) ~> _ </k>
     <exit-code> 1 </exit-code>
@@ -15,8 +15,8 @@ module GET5IFEQ-XLENNEQY-SPEC
     <analysis> .Map </analysis> // not part of evm
     <ethereum>
       <evm>
-        <output> _ => _ </output>
-        <statusCode> _ => EVMC_REVERT </statusCode>
+        <output> _ => #encodeArgs(#uint256(5)) </output>
+        <statusCode> _ => EVMC_SUCCESS </statusCode>
         <callStack> _ </callStack>
         <interimStates> _ </interimStates>
         <touchedAccounts> _ => _ </touchedAccounts>
@@ -107,8 +107,7 @@ andBool #rangeUInt(256, CONTRACT_BAL)andBool Y ==Int select(S, #hashedLocation("
 andBool #range(0 <= CD < 1024)
 andBool #rangeAddress(MSG_SENDER)
 andBool #rangeUInt(256, XARR_LEN)
-andBool #rangeUInt(256, ZARR_LEN)
-andBool #rangeUInt(256, Y)andBool XARR_LEN =/=Int Y
+andBool #rangeUInt(256, Y)andBool XARR_LEN ==Int Y
     ensures true
 
 
