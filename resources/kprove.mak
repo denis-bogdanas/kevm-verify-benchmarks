@@ -3,12 +3,7 @@
 #
 
 # path to a directory that contains .k.rev and .kevm.rev
-BUILD_DIR?=.build
-
-# check if the build directory exists (note: $(wildcard $(BUILD_DIR)) is not enough since it doesn't check if it is a directory)
-ifeq ($(wildcard $(BUILD_DIR)/.),)
-$(error BUILD_DIR does not exist)
-endif
+BUILD_DIR?=../.build
 
 K_REPO_URL?=https://github.com/kframework/k
 KEVM_REPO_URL?=https://github.com/kframework/evm-semantics
@@ -17,12 +12,15 @@ ifndef SPEC_NAMES
 $(error SPEC_NAMES is not set)
 endif
 
-SPEC_INI?=spec.ini
-LOCAL_LEMMAS?=abstract-semantics.k verification.k
-TMPLS?=module-tmpl.k spec-tmpl.k
+SPEC_INI?=./spec.ini
+LOCAL_LEMMAS?=../resources/abstract-semantics.k ../resources/verification.k \
+                ../resources/evm-symbolic.k ../resources/ecrec-symbolic.k \
+                ../resources/evm-data-symbolic.k
+TMPLS?=../resources/module-tmpl.k ../resources/spec-tmpl.k
+SPECS_DIR?=./generated-k
 
 # additional options to kprove command
-KPROVE_OPTS?=
+KPROVE_OPTS?=--smt-prelude ../resources/evm.smt2
 KPROVE_OPTS+=$(EXT_KPROVE_OPTS)
 
 # Define variable DEBUG to enable debug options below
