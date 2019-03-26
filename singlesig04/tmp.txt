@@ -1,0 +1,11 @@
+output: _ => #encodeArgs(#bytes32(TX_INPUT_HASH))
+
+            andBool TX_INPUT_HASH ==Int keccak(#encodeArgs(
+                                #bytes32(#parseHexWord({TXTYPE_HASH})),
+                                #address(DESTINATION),
+                                #uint256(VALUE),
+                                #bytes32(keccak(#buf(DATA_LEN,DATA))),
+                                #uint256(NONCE),
+                                #address(EXECUTOR),
+                                #uint256(GAS_LIMIT)
+                            ))

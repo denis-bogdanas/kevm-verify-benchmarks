@@ -123,9 +123,6 @@ andBool #rangeUInt(256, GAS_LIMIT)
 
 andBool select(M, #hashedLocation("Solidity", 8, .IntList)) ==Int DOMAIN_SEPARATOR
 andBool #rangeBytes(32, DOMAIN_SEPARATOR)
-
-andBool select(M, #hashedLocation("Solidity", 5, .IntList)) ==Int NONCE
-andBool #rangeUInt(256, NONCE)
 andBool (EXECUTOR ==Int MSG_SENDER orBool EXECUTOR ==Int 0)
     ensures true
 
