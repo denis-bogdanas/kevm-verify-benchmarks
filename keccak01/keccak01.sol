@@ -4,6 +4,6 @@ contract keccak01 {
     uint public nonce;
 
     function getkeccakstorage() public returns(bytes32) {
-        return keccak256(abi.encode(nonce));
+        return keccak256(abi.encode(5));
     }
 }
