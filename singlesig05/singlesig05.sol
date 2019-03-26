@@ -28,7 +28,7 @@ contract singlesig05 {
         require(executor == msg.sender || executor == address(0));
 
         // EIP712 scheme: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md
-        bytes32 txInputHash = keccak256(abi.encode(TXTYPE_HASH, destination, value, keccak256(data)));
+        bytes32 txInputHash = keccak256(abi.encode(TXTYPE_HASH, destination, value, keccak256(data), nonce));
 
         return txInputHash;
     }
