@@ -44,7 +44,7 @@ contract singlesig00 {
     }
 
     // Note that address recovered from signatures must be strictly increasing, in order to prevent duplicates
-    function execute(uint8 sigv, bytes32 sigr, bytes32 sigs, bytes data) external returns(uint) {
+    function execute(uint8 sigV, bytes32 sigR, bytes32 sigS, address destination, uint value, bytes data, address executor, uint gasLimit) external returns(uint) {
 
         return 5;
         /*
