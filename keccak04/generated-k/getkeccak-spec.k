@@ -107,7 +107,7 @@ andBool #rangeUInt(256, CONTRACT_BAL)andBool #range(0 <= CD < 1024)
 andBool #rangeAddress(MSG_SENDER)
 andBool select(M, #hashedLocation("Solidity", 0, .IntList)) ==Int NONCE
 andBool #rangeUInt(256, NONCE)
-andBool HASH ==Int keccak(25 : 1 : #encodeArgs(#uint256(NONCE)))
+andBool HASH ==Int keccak(25 : 1 : .WordStack)
     ensures true
 
 
