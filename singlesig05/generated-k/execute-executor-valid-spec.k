@@ -121,10 +121,10 @@ andBool DATA_LEN <Int 2 ^Int 16
 andBool #rangeAddress(EXECUTOR)
 andBool #rangeUInt(256, GAS_LIMIT)
 
-andBool select(M, #hashedLocation("Solidity", 8, .IntList)) ==Int DOMAIN_SEPARATOR
+andBool select(M, #hashedLocation("Solidity", 3, .IntList)) ==Int DOMAIN_SEPARATOR
 andBool #rangeBytes(32, DOMAIN_SEPARATOR)
 
-andBool select(M, #hashedLocation("Solidity", 5, .IntList)) ==Int NONCE
+andBool select(M, #hashedLocation("Solidity", 0, .IntList)) ==Int NONCE
 andBool #rangeUInt(256, NONCE)
 andBool (EXECUTOR ==Int MSG_SENDER orBool EXECUTOR ==Int 0)
 andBool TX_INPUT_HASH ==Int keccak(#encodeArgs(
