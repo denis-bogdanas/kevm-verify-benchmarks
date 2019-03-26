@@ -15,7 +15,7 @@ module EXECUTE-EXECUTOR-VALID-SPEC
     <analysis> .Map </analysis> // not part of evm
     <ethereum>
       <evm>
-        <output> _ => _ </output>
+        <output> _ => #encodeArgs(#bytes32(TX_INPUT_HASH)) </output>
         <statusCode> _ => EVMC_SUCCESS </statusCode>
         <callStack> _ </callStack>
         <interimStates> _ </interimStates>
@@ -127,6 +127,15 @@ andBool #rangeBytes(32, DOMAIN_SEPARATOR)
 andBool select(M, #hashedLocation("Solidity", 5, .IntList)) ==Int NONCE
 andBool #rangeUInt(256, NONCE)
 andBool (EXECUTOR ==Int MSG_SENDER orBool EXECUTOR ==Int 0)
+andBool TX_INPUT_HASH ==Int keccak(#encodeArgs(
+#bytes32(#parseHexWord("0x3ee892349ae4bbe61dce18f95115b5dc02daf49204cc602458cd4c1f540d56d7")),
+#address(DESTINATION),
+#uint256(VALUE),
+#bytes32(keccak(#buf(DATA_LEN,DATA))),
+#uint256(NONCE),
+#address(EXECUTOR),
+#uint256(GAS_LIMIT)
+))
     ensures true
 
 
