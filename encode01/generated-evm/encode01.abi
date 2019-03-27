@@ -1,1 +1,1 @@
-[{"constant":false,"inputs":[],"name":"get","outputs":[{"name":"","type":"bytes"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]
+[{"constant":false,"inputs":[{"name":"arg0","type":"bytes32"},{"name":"arg1","type":"bytes32"}],"name":"get","outputs":[{"name":"","type":"bytes"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]

@@ -1,3 +1,3 @@
-SPEC_NAMES:=getkeccak
+SPEC_NAMES:=get
 
 include ../resources/kprove.mak
