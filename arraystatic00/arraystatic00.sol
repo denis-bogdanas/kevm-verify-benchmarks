@@ -6,3 +6,4 @@ contract arraystatic00 {
         return 5;
     }
 }
+

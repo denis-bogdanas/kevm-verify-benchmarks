@@ -6,3 +6,4 @@ contract simple15 {
         return zarr.length;
     }
 }
+

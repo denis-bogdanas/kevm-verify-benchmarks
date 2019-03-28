@@ -6,3 +6,4 @@ contract keccakencode02 {
         return keccak256(abi.encodePacked(x));
     }
 }
+

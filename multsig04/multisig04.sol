@@ -31,3 +31,4 @@ contract multisig04 {
         return 5;
     }
 }
+
