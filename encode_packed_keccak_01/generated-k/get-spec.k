@@ -15,7 +15,7 @@ module GET-SPEC
     <analysis> .Map </analysis> // not part of evm
     <ethereum>
       <evm>
-        <output> _ => #encodeArgs( #bytes( #parseHexWord("0x19") : #parseHexWord("0x1") : #encodeArgs(#bytes32(ARG0), #bytes32(ARG1)) ) ) </output>
+        <output> _ => #encodeArgs(#bytes32(keccak(#buf(X_LEN, X)))) </output>
         <statusCode> _ => EVMC_SUCCESS </statusCode>
         <callStack> _ </callStack>
         <interimStates> _ </interimStates>
@@ -107,6 +107,7 @@ andBool #rangeUInt(256, CONTRACT_BAL)andBool #range(0 <= CD < 1024)
 andBool #rangeAddress(MSG_SENDER)
 andBool #rangeBytes(32, ARG0)
 andBool #rangeBytes(32, ARG1)
+andBool #buf(X_LEN, X) ==K 25 : 1 : #encodeArgs(#bytes32(ARG0), #bytes32(ARG1))
     ensures true
 
 
