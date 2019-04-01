@@ -15,7 +15,7 @@ module GET-SPEC
     <analysis> .Map </analysis> // not part of evm
     <ethereum>
       <evm>
-        <output> _ => #encodeArgs(#bytes32(keccak(#parseHexWord("0x19") : #encodeArgs(#bytes32(X))))) </output>
+        <output> _ => #encodeArgs(#bytes32(keccak(25 : X : .WordStack))) </output>
         <statusCode> _ => EVMC_SUCCESS </statusCode>
         <callStack> _ </callStack>
         <interimStates> _ </interimStates>
