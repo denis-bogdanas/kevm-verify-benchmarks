@@ -15,7 +15,7 @@ module GET-SPEC
     <analysis> .Map </analysis> // not part of evm
     <ethereum>
       <evm>
-        <output> _ => _ </output>
+        <output> _ => #encodeArgs(#bytes32(keccak(BUFFER))) </output>
         <statusCode> _ => EVMC_SUCCESS </statusCode>
         <callStack> _ </callStack>
         <interimStates> _ </interimStates>
@@ -103,10 +103,12 @@ _
      // Account address normality
      andBool #CONTRACT_ID  >Int 0 andBool (notBool #CONTRACT_ID  in #precompiledAccounts(BYZANTIUM))
 
-andBool #rangeUInt(256, CONTRACT_BAL)andBool #range(0 <= CD < 1024)
+andBool #rangeUInt(256, CONTRACT_BAL)
+andBool #range(0 <= CD < 1024)
 andBool #rangeAddress(MSG_SENDER)
 andBool #rangeBytes(32, ARG0)
 andBool #rangeBytes(32, ARG1)
+andBool BUFFER ==K 25 : 1 : #encodeArgs(#bytes32(ARG0), #bytes32(ARG1))
     ensures true
 
 
