@@ -1,12 +1,12 @@
 requires "abstract-semantics.k"
 requires "verification.k"
 
-module GET-SUCCESS-SPEC
+module GET-FAILURE-SPEC
   imports ETHEREUM-SIMULATION
   imports ABSTRACT-SEMANTICS
   imports VERIFICATION
 
-  // get-success 
+  // get-failure 
   rule
     <k> (#execute => #halt) ~> _ </k>
     <exit-code> 1 </exit-code>
@@ -15,8 +15,8 @@ module GET-SUCCESS-SPEC
     <analysis> .Map </analysis> // not part of evm
     <ethereum>
       <evm>
-        <output> _ => #encodeArgs(#uint256(5)) </output>
-        <statusCode> _ => EVMC_SUCCESS </statusCode>
+        <output> _ => _ </output>
+        <statusCode> _ => EVMC_REVERT </statusCode>
         <callStack> _ </callStack>
         <interimStates> _ </interimStates>
         <touchedAccounts> _ => _ </touchedAccounts>
@@ -111,8 +111,7 @@ andBool #rangeBytes(32, SIGR)
 andBool #rangeBytes(32, SIGS)
 
 andBool ECREC_DATA ==K #encodeArgs( #bytes32(HASH), #uint8(SIGV), #bytes32(SIGR), #bytes32(SIGS) )
-andBool RECOVERED ==Int #symEcrec( ECREC_DATA )
-andBool notBool #ecrecEmpty( ECREC_DATA )
+andBool #ecrecEmpty( ECREC_DATA )
     ensures true
 
 
