@@ -1,6 +1,6 @@
 pragma solidity 0.4.24;
 
-contract singlesig06 {
+contract singlesig10 {
 
     // EIP712 Precomputed hashes:
     // keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract,bytes32 salt)")
@@ -29,8 +29,9 @@ contract singlesig06 {
 
         // EIP712 scheme: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md
         bytes32 txInputHash = keccak256(abi.encode(TXTYPE_HASH, destination, value, keccak256(data), nonce, executor, gasLimit));
+        bytes32 totalHash = keccak256(abi.encode(uint256(25), uint256(1), DOMAIN_SEPARATOR, txInputHash));
 
-        return txInputHash;
+        return totalHash;
     }
 
     function () payable external {}
