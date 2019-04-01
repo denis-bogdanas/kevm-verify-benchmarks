@@ -1,6 +1,6 @@
 pragma solidity 0.4.24;
 
-contract encode02 {
+contract encode_packed_02 {
     bytes32 public storage0;
 
     function get(bytes32 arg0) public returns(bytes) {
