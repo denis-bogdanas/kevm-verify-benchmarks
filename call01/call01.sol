@@ -1,6 +1,6 @@
 pragma solidity 0.4.24;
 
-contract call00 {
+contract call01 {
 
     function execute(address destination) public returns(bool) {
         bool success = false;
