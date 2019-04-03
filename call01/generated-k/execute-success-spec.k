@@ -80,7 +80,7 @@ _
           <account>
             <acctID> #CALLEE_ID </acctID>
             <balance> CALLEE_BAL </balance>
-            <code> #parseByteStack("0x6080604052348015600f57600080fd5b500000a165627a7a72305820aae23524944909bfba8610f375ff6d9e0ed50c160255f344b46162e17a3ea3530029") </code>
+            <code> _ </code>
             <storage>
                 _
             </storage>
