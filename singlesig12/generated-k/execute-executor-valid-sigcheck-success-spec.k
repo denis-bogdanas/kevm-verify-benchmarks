@@ -1,12 +1,12 @@
 requires "abstract-semantics.k"
 requires "verification.k"
 
-module EXECUTE-EXECUTOR-VALID-SPEC
+module EXECUTE-EXECUTOR-VALID-SIGCHECK-SUCCESS-SPEC
   imports ETHEREUM-SIMULATION
   imports ABSTRACT-SEMANTICS
   imports VERIFICATION
 
-  // execute-executor-valid 
+  // execute-executor-valid-sigcheck-success 
   rule
     <k> (#execute => #halt) ~> _ </k>
     <exit-code> 1 </exit-code>
