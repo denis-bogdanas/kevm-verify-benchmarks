@@ -87,15 +87,15 @@ _
 
           <account>
             <acctID> #CALLEE_ID </acctID>
-            <balance> {CALLEE_BAL} </balance>
-            <code> {CALLEE_CODE} </code>
+            <balance> CALLEE_BAL </balance>
+            <code> _ </code>
             <storage>
-                {CALLEE_STORAGE}
+                _
             </storage>
             <origStorage>
-                {CALLEE_ORIGSTORAGE}
+                _
             </origStorage>
-            <nonce> {CALLEE_NONCE} </nonce>
+            <nonce> _ </nonce>
           </account>
 
           <account>
