@@ -110,6 +110,7 @@ _
     </ethereum>
     requires
      #rangeAddress(#CONTRACT_ID)
+     andBool #rangeAddress(#CALLEE_ID)
      andBool #rangeUInt(256, NOW)
      andBool #rangeUInt(128, BLOCK_NUM) // Solidity
 

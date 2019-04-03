@@ -72,7 +72,7 @@
           <account>
             <acctID> #CALLEE_ID </acctID>
             <balance> {CALLEE_BAL} </balance>
-            <code> #parseByteStack({CALLEE_CODE}) </code>
+            <code> {CALLEE_CODE} </code>
             <storage>
                 {CALLEE_STORAGE}
             </storage>
@@ -102,7 +102,7 @@
     </ethereum>
     requires
      #rangeAddress(#CONTRACT_ID)
-     #rangeAddress(#CALLEE_ID)
+     andBool #rangeAddress(#CALLEE_ID)
      andBool #rangeUInt(256, NOW)
      andBool #rangeUInt(128, BLOCK_NUM) // Solidity
 
