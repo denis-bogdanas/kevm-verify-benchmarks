@@ -26,9 +26,9 @@ module EXECUTE-EXECUTOR-VALID-SPEC
           <id> #CONTRACT_ID </id> // this
           <caller> MSG_SENDER </caller> // msg.sender
           <callData> #abiCallData("execute",
-#uint8(_),
-#bytes32(_),
-#bytes32(_),
+#uint8(SIGV),
+#bytes32(SIGR),
+#bytes32(SIGS),
 #address(DESTINATION),
 #uint256(VALUE),
 #bytes(#buf(DATA_LEN, DATA)),
