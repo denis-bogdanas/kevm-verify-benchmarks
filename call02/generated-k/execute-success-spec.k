@@ -124,7 +124,6 @@ andBool #range(0 <= CD < 1023)
 andBool #rangeAddress(MSG_SENDER)
 andBool #rangeAddress(DESTINATION)
 andBool DESTINATION ==Int #CALLEE_ID
-andBool DESTINATION =/=Int #CONTRACT_ID
     ensures true
 
 
