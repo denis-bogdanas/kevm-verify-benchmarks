@@ -70,6 +70,19 @@
           </account>
 
           <account>
+            <acctID> #CALLEE_ID </acctID>
+            <balance> {CALLEE_BAL} </balance>
+            <code> #parseByteStack({CALLEE_CODE}) </code>
+            <storage>
+                {CALLEE_STORAGE}
+            </storage>
+            <origStorage>
+                {CALLEE_ORIGSTORAGE}
+            </origStorage>
+            <nonce> {CALLEE_NONCE} </nonce>
+          </account>
+
+          <account>
             // precompiled account for ECCREC
             <acctID> 1 </acctID>
             <balance> 0 </balance>
@@ -94,6 +107,7 @@
 
      // Account address normality
      andBool #CONTRACT_ID  >Int 0 andBool (notBool #CONTRACT_ID  in #precompiledAccounts(BYZANTIUM))
+     andBool #CALLEE_ID  >Int 0 andBool (notBool #CALLEE_ID  in #precompiledAccounts(BYZANTIUM))
 
 {REQUIRES}
     ensures true
