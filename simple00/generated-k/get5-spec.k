@@ -62,7 +62,7 @@ module GET5-SPEC
         <blockhash> BLOCK_HASHES </blockhash> // block.blockhash
       </evm>
       <network>
-        <activeAccounts> SetItem(#CONTRACT_ID) SetItem(1) _:Set </activeAccounts>
+        <activeAccounts> SetItem(#CONTRACT_ID) SetItem(#CALLEE_ID) SetItem(1) _:Set </activeAccounts>
         <accounts>
           <account>
             <acctID> #CONTRACT_ID </acctID>
@@ -73,6 +73,19 @@ _
             </storage>
             <origStorage>
 _
+            </origStorage>
+            <nonce> _ </nonce>
+          </account>
+
+          <account>
+            <acctID> #CALLEE_ID </acctID>
+            <balance> CALLEE_BAL </balance>
+            <code> _ </code>
+            <storage>
+                _
+            </storage>
+            <origStorage>
+                _
             </origStorage>
             <nonce> _ </nonce>
           </account>
@@ -97,11 +110,13 @@ _
     </ethereum>
     requires
      #rangeAddress(#CONTRACT_ID)
+     andBool #rangeAddress(#CALLEE_ID)
      andBool #rangeUInt(256, NOW)
      andBool #rangeUInt(128, BLOCK_NUM) // Solidity
 
      // Account address normality
      andBool #CONTRACT_ID  >Int 0 andBool (notBool #CONTRACT_ID  in #precompiledAccounts(BYZANTIUM))
+     andBool #CALLEE_ID  >Int 0 andBool (notBool #CALLEE_ID  in #precompiledAccounts(BYZANTIUM))
 
 andBool #rangeUInt(256, CONTRACT_BAL)andBool #range(0 <= CD < 1024)
 andBool #rangeAddress(MSG_SENDER)
