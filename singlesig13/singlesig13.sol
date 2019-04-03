@@ -38,6 +38,8 @@ contract singlesig13 {
             lastAdd = recovered;
         }
 
+        nonce = nonce + 1;
+
         return recovered;
     }
 
