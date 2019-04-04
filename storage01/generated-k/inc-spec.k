@@ -123,6 +123,8 @@ andBool #rangeAddress(MSG_SENDER)
 andBool NONCE_0 ==Int select(S0, #hashedLocation("Solidity", 0, .IntList))
     ensures true
 andBool S0 ==IMap S1 except (SetItem(#hashedLocation("Solidity", 0, .IntList)) .Set)
+andBool NONCE_1 ==Int select(S1, #hashedLocation("Solidity", 0, .IntList))
+andBool NONCE_1 ==Int 1
 
 
 
