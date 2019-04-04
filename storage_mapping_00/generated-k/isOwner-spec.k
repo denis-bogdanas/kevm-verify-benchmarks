@@ -15,7 +15,7 @@ module ISOWNER-SPEC
     <analysis> .Map </analysis> // not part of evm
     <ethereum>
       <evm>
-        <output> _ => _ </output>
+        <output> _ => #encodeArgs(#uint256(RESULT)) </output>
         <statusCode> _ => EVMC_SUCCESS </statusCode>
         <callStack> _ </callStack>
         <interimStates> _ </interimStates>
