@@ -39,7 +39,7 @@ module ISOWNER-SPEC
         <substate>
           <selfDestruct> _ </selfDestruct>
           <log> _ </log>
-          <refund> _ </refund>
+          <refund> _ => _ </refund>
         </substate>
         <gasPrice> _ </gasPrice>
         <origin> _ </origin> // tx.origin
