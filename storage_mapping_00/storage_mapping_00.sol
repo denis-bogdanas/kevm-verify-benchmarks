@@ -7,3 +7,4 @@ contract storage_mapping_00 {
         return isOwnerMap[x];
     }
 }
+

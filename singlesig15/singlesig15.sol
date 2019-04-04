@@ -24,7 +24,7 @@ contract singlesig15 {
     bytes32 DOMAIN_SEPARATOR;          // hash for EIP712, computed from contract address
 
     // Note that address recovered from signatures must be strictly increasing, in order to prevent duplicates
-    function execute(uint8 sigV, bytes32 sigR, bytes32 sigS, address destination, uint value, bytes data, address executor, uint gasLimit) external returns(address) {
+    function execute(uint8 sigV, bytes32 sigR, bytes32 sigS, address destination, uint value, bytes data, address executor, uint gasLimit) external returns(bool) {
         require(executor == msg.sender || executor == address(0));
 
         // EIP712 scheme: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md
@@ -40,7 +40,9 @@ contract singlesig15 {
 
         nonce = nonce + 1;
 
-        return recovered;
+        bool success = false;
+        assembly { success := call(gas, destination, 0, 0, 0, 0, 0) }
+        return success;
     }
 
     function () payable external {}
