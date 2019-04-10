@@ -15,7 +15,7 @@ module ISOWNER-SPEC
     <analysis> .Map </analysis> // not part of evm
     <ethereum>
       <evm>
-        <output> _ => #encodeArgs(#uint256(RESULT)) </output>
+        <output> _ => #encodeArgs(#bool(RET)) </output>
         <statusCode> _ => EVMC_SUCCESS </statusCode>
         <callStack> _ </callStack>
         <interimStates> _ </interimStates>
@@ -123,9 +123,10 @@ andBool #range(0 <= CD < 1024)
 andBool #rangeAddress(MSG_SENDER)
 andBool #rangeAddress(X)
 andBool RESULT ==Int select(S, #hashedLocation("Solidity", 0, X))
-andBool #rangeUInt(256, RESULT)
+andBool #rangeUInt(8, RESULT)
+andBool RESULT =/=Int 0
     ensures true
-
+andBool RET ==Int 1
 
 
 
