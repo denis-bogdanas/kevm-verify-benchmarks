@@ -1,9 +1,9 @@
 pragma solidity 0.4.24;
 
 contract storage_mapping_02 {
-    mapping(address => bool) public isOwnerMap;
+    mapping(address => uint8) public isOwnerMap;
 
-    function isOwner(address x) external returns (bool) {
+    function isOwner(address x) external returns (uint8) {
         return isOwnerMap[x];
     }
 }
