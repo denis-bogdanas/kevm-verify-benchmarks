@@ -1,12 +1,12 @@
 requires "abstract-semantics.k"
 requires "verification.k"
 
-module EXECUTE-EXECUTOR-VALID-SIGCHECK-PASS-SUCCESS-SPEC
+module EXECUTE-EXECUTOR-VALID-SIGCHECK-PASS-OWNERCHECK-PASS-SUCCESS-SPEC
   imports ETHEREUM-SIMULATION
   imports ABSTRACT-SEMANTICS
   imports VERIFICATION
 
-  // execute-executor-valid-sigcheck-pass-success 
+  // execute-executor-valid-sigcheck-pass-ownercheck-pass-success 
   rule
     <k> (#execute => #halt) ~> _ </k>
     <exit-code> 1 </exit-code>
@@ -165,6 +165,9 @@ andBool ECREC_DATA ==K #encodeArgs( #bytes32(TX_TOTAL_HASH), #uint8(SIGV), #byte
 andBool RECOVERED ==Int #symEcrec( ECREC_DATA )
 andBool notBool #ecrecEmpty( ECREC_DATA )
 andBool #rangeAddress(RECOVERED)
+andBool IS_OWNER ==Int select(S0, #hashedLocation("Solidity", 1, RECOVERED))
+andBool #rangeUInt(8, IS_OWNER)
+andBool IS_OWNER =/=Int 0
 andBool NONCE_0 ==Int select(S0, #hashedLocation("Solidity", 0, .IntList))
 andBool NONCE_0 <Int 2 ^Int 256 -Int 1
 andBool NONCE_0 >=Int 0
