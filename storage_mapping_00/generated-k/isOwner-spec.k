@@ -123,6 +123,7 @@ andBool #range(0 <= CD < 1024)
 andBool #rangeAddress(MSG_SENDER)
 andBool #rangeAddress(X)
 andBool RESULT ==Int select(S, #hashedLocation("Solidity", 0, X))
+andBool #rangeUInt(256, RESULT)
     ensures true
 
 
