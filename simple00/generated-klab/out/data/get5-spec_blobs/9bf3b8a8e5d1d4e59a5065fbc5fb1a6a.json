@@ -1,0 +1,1 @@
+{"format":"KAST","version":1,"term":{"node":"KApply","label":"_==K_","variable":false,"arity":2,"args":[{"node":"KApply","label":"_<=Int__INT-COMMON","variable":false,"arity":2,"args":[{"node":"KToken","sort":"Int","token":"0"},{"node":"KVariable","name":"DATA","originalName":"DATA"}]},{"node":"KToken","sort":"Bool","token":"true"}]}}

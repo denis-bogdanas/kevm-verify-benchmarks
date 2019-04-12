@@ -1,0 +1,1 @@
+{"format":"KAST","version":1,"term":{"node":"KApply","label":"_==K_","variable":false,"arity":2,"args":[{"node":"KToken","sort":"Int","token":"32"},{"node":"KApply","label":"#sizeBuffer","variable":false,"arity":1,"args":[{"node":"KVariable","name":"BUF","originalName":"BUF"}]}]}}
