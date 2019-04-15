@@ -15,7 +15,7 @@ module EXECUTE-EXECUTOR-VALID-SPEC
     <analysis> .Map </analysis> // not part of evm
     <ethereum>
       <evm>
-        <output> _ => #encodeArgs(#bytes32(TOTAL_HASH)) </output>
+        <output> _ => #padToWidth(32, #asByteStack(TOTAL_HASH) ) </output>
         <statusCode> _ => EVMC_SUCCESS </statusCode>
         <callStack> _ </callStack>
         <interimStates> _ </interimStates>
@@ -86,6 +86,19 @@ _
           </account>
 
           <account>
+            <acctID> #CALLEE_ID </acctID>
+            <balance> CALLEE_BAL </balance>
+            <code> _ </code>
+            <storage>
+                _
+            </storage>
+            <origStorage>
+                _
+            </origStorage>
+            <nonce> _ </nonce>
+          </account>
+
+          <account>
             // precompiled account for ECCREC
             <acctID> 1 </acctID>
             <balance> 0 </balance>
@@ -105,11 +118,13 @@ _
     </ethereum>
     requires
      #rangeAddress(#CONTRACT_ID)
+     andBool #rangeAddress(#CALLEE_ID)
      andBool #rangeUInt(256, NOW)
      andBool #rangeUInt(128, BLOCK_NUM) // Solidity
 
      // Account address normality
      andBool #CONTRACT_ID  >Int 0 andBool (notBool #CONTRACT_ID  in #precompiledAccounts(BYZANTIUM))
+     andBool #CALLEE_ID  >Int 0 andBool (notBool #CALLEE_ID  in #precompiledAccounts(BYZANTIUM))
 
 andBool #rangeUInt(256, CONTRACT_BAL)
 andBool #range(0 <= CD < 1024)
@@ -137,11 +152,8 @@ andBool TX_INPUT_HASH ==Int keccak(#encodeArgs(
 #uint256(GAS_LIMIT)
 ))
 andBool TOTAL_HASH ==Int keccak(
-25 : 1 :
-#encodeArgs(
-#bytes32(DOMAIN_SEPARATOR),
-#bytes32(TX_INPUT_HASH)
-))
+#parseHexWord("0x19") : #parseHexWord("0x1")
+: #encodeArgs(#bytes32(DOMAIN_SEPARATOR), #bytes32(TX_INPUT_HASH)))
     ensures true
 
 
