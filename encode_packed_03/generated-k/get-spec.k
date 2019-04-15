@@ -121,7 +121,6 @@ _
 andBool #rangeUInt(256, CONTRACT_BAL)andBool #range(0 <= CD < 1024)
 andBool #rangeAddress(MSG_SENDER)
 andBool #rangeBytes(32, ARG0)
-andBool #rangeBytes(32, ARG1)
     ensures true
 
 
