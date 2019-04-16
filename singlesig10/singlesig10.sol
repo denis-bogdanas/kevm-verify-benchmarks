@@ -29,7 +29,7 @@ contract singlesig10 {
 
         // EIP712 scheme: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md
         bytes32 txInputHash = keccak256(abi.encode(TXTYPE_HASH, destination, value, keccak256(data), nonce, executor, gasLimit));
-        bytes32 totalHash = keccak256(abi.encode(uint256(25), uint256(1), DOMAIN_SEPARATOR, txInputHash));
+        bytes32 totalHash = keccak256(abi.encodePacked(byte(25), byte(1), DOMAIN_SEPARATOR, txInputHash));
 
         return totalHash;
     }
