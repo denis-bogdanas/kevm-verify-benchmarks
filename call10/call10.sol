@@ -10,3 +10,6 @@ contract call10 {
         require(success);
     }
 }
+
+
+create trusted K-spec about call statement
