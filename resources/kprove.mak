@@ -15,7 +15,8 @@ endif
 SPEC_INI?=./spec.ini
 LOCAL_LEMMAS?=../resources/abstract-semantics.k ../resources/verification.k \
                 ../resources/evm-symbolic.k ../resources/ecrec-symbolic.k \
-                ../resources/evm-data-symbolic.k
+                ../resources/evm-data-symbolic.k \
+                ../resources/edsl-static-array.k
 TMPLS?=../resources/module-tmpl.k ../resources/spec-tmpl.k
 SPECS_DIR?=./generated-k
 

@@ -6,6 +6,7 @@ module VERIFICATION
     imports EVM-SYMBOLIC
     imports EVM-DATA-SYMBOLIC
     imports EDSL
+    imports EDSL-STATIC-ARRAY
     imports LEMMAS
 
   // ########################
@@ -280,6 +281,11 @@ module VERIFICATION
         => #asWord(WS1 ++ #buf(30, 0))
       requires #sizeWordStack(WS1) ==Int 2
        andBool #sizeWordStack(WS2) ==Int 30
+
+    rule #asWord(WS1 ++ WS2) &Int 115790322390251417039241401711187164934754157181743688420499462401711837020160
+       => #asWord(WS1 ++ #buf(30, 0))
+     requires #sizeWordStack(WS1) ==Int 2
+      andBool #sizeWordStack(WS2) ==Int 30
 
     // x &Int (NOT 31)
     rule X &Int 115792089237316195423570985008687907853269984665640564039457584007913129639904 => (X /Int 32) *Int 32  requires 0 <=Int X
