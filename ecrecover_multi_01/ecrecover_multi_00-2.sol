@@ -1,6 +1,6 @@
 pragma solidity 0.4.24;
 
-contract ecrecover_multi_00 {
+contract ecrecover_multi_01 {
     uint256 constant THRESHOLD = 3;
 
     function get(bytes32 hash, uint8[3] sigV, bytes32[3] sigR, bytes32[3] sigS) public returns(uint256) {
