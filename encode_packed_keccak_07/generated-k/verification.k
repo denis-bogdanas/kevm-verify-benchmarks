@@ -6,6 +6,7 @@ module VERIFICATION
     imports EVM-SYMBOLIC
     imports EVM-DATA-SYMBOLIC
     imports EDSL
+    imports EDSL-STATIC-ARRAY
     imports LEMMAS
 
   // ########################

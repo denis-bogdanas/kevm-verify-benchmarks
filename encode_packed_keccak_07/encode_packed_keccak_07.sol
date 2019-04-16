@@ -1,14 +1,9 @@
-pragma solidity 0.4.24;
+pragma solidity 0.5.0;
 
 contract encode_packed_keccak_07 {
 
-    function execute(bytes data, uint gasLimit) external returns(bytes32) {
-
+    function execute(bytes calldata data, uint gasLimit) external returns(bytes32) {
         bytes32 txInputHash = keccak256(abi.encode(keccak256(data), gasLimit));
-
-        bytes32 txTotalHash = keccak256(
-                abi.encodePacked(byte(25), byte(1), txInputHash));
-
-        return txTotalHash;
+        return keccak256(abi.encodePacked(byte(0x19), byte(0x01), txInputHash));
     }
 }
