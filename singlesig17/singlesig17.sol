@@ -1,4 +1,4 @@
-pragma solidity 0.4.24;
+pragma solidity 0.5.0;
 
 contract singlesig17 {
 
@@ -24,19 +24,17 @@ contract singlesig17 {
     bytes32 DOMAIN_SEPARATOR;          // hash for EIP712, computed from contract address
 
     // Note that address recovered from signatures must be strictly increasing, in order to prevent duplicates
-    function execute(uint8 sigV, bytes32 sigR, bytes32 sigS, address destination, uint value, bytes data, address executor, uint gasLimit) external returns(address) {
+    function execute(uint8 sigV, bytes32 sigR, bytes32 sigS, address destination, uint value, bytes calldata data, address executor, uint gasLimit) external returns(address) {
         require(executor == msg.sender || executor == address(0));
 
         // EIP712 scheme: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md
         bytes32 txInputHash = keccak256(abi.encode(TXTYPE_HASH, destination, value, keccak256(data), nonce, executor, gasLimit));
-        bytes32 totalHash = keccak256(abi.encodePacked(byte(25), byte(1), DOMAIN_SEPARATOR, txInputHash));
+        bytes32 totalHash = keccak256(abi.encodePacked(byte(0x19), byte(0x01), DOMAIN_SEPARATOR, txInputHash));
 
         address lastAdd = address(0);
-        {
-            address recovered = ecrecover(totalHash, sigV, sigR, sigS);
-            require(recovered > lastAdd && isOwner[recovered]);
-            lastAdd = recovered;
-        }
+        address recovered = ecrecover(totalHash, sigV, sigR, sigS);
+        require(recovered > lastAdd && isOwner[recovered]);
+        lastAdd = recovered;
 
         nonce = nonce + 1;
 

@@ -4,10 +4,12 @@
 
 requires "evm.k"
 requires "edsl.k"
+requires "edsl-static-array.k"
 
 module LEMMAS
     imports EVM
     imports EDSL
+    imports EDSL-STATIC-ARRAY
     imports K-REFLECTION
 
 
