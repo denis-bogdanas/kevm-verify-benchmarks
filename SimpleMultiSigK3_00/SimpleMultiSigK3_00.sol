@@ -17,7 +17,7 @@ contract SimpleMultiSigK3_00 {
 
     bytes32 constant SALT = 0x251543af6a222378665a76fe38dbceae4871a070b7fdaf5c6c30cf758dc33cc0;
 
-    bytes32 constant THRESHOLD = 3;
+    uint256 constant THRESHOLD = 3;
 
     uint public nonce;                 // (only) mutable state
     mapping (address => bool) isOwner; // immutable state
@@ -26,7 +26,7 @@ contract SimpleMultiSigK3_00 {
     bytes32 DOMAIN_SEPARATOR;          // hash for EIP712, computed from contract address
 
     // Note that address recovered from signatures must be strictly increasing, in order to prevent duplicates
-    function execute(uint8[3] sigV, bytes32[3] sigR, bytes32[3] sigS, address destination, uint value, bytes calldata data, address executor, uint gasLimit) external returns(uint256) {
+    function execute(uint8[3] memory sigV, bytes32[3] memory sigR, bytes32[3] memory sigS, address destination, uint value, bytes memory data, address executor, uint gasLimit) public returns(uint256) {
         require(executor == msg.sender || executor == address(0));
 
         bytes32 txInputHash = keccak256(abi.encode(TXTYPE_HASH, destination, value, keccak256(data), nonce, executor, gasLimit));
