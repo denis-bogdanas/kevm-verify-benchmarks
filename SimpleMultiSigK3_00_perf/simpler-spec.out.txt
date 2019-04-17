@@ -1,0 +1,55 @@
+/home/sbugrara/kevm-verify-benchmarks/.build/k/k-distribution/target/release/k/bin/kprove -v --debug -d /home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java -m VERIFICATION --z3-impl-timeout 500 --deterministic-functions --no-exc-wrap --cache-func-optimized --no-alpha-renaming --format-failures --boundary-cells k,pc --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,#pc,#result --smt-prelude ../resources/evm.smt2  generated-k/execute-executor-valid-sigcheck-fail-revert-2-spec.k
+Parse command line options                                   =  0.000s
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/././generated-k/execute-executor-valid-sigcheck-fail-revert-2-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/execute-executor-valid-sigcheck-fail-revert-2-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/abstract-semantics.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/evm-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/edsl.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/evm.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/data.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/krypto.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/network.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/ecrec-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/verification.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/evm-data-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/lemmas.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/edsl-static-array.k)
+Parse spec modules [3/1209 rules]                            =  0.012s
+
+Parsing finished:   42.773 s
+
+Initialization finished
+==================================
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :   44.480 s,	  658 MB, gc:  4.503 %
+  Parsing             :   42.773 s,	  431 MB, gc:  4.683 %
+  Init                :    1.707 s,	  658 MB, gc:  0.000 %
+
+Init+Execution time:       1.707 s
+  query build time                 :    0.061 s,      #         87
+  Z3 Function rule implication time:    0.187 s,      #         14
+      sat           :       14
+    query build failures: 73
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    1.238 s,      #      10472
+    evaluateFunction time            :    1.229 s,      #        211
+      builtin evaluation               :           ,      #         17
+      function rule                    :           ,      #         63
+      no rule applicable               :           ,      #        131
+    applyAnywhereRules time          :    0.001 s,      #        386
+      no anywhere rules                :           ,      #        386
+    remaining time & # cached        :    0.008 s,      #       9875
+  impliesSMT time                  :    0.255 s,      #         87
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     555803
+    evaluateFunction time            :           ,      #      24253
+      builtin evaluation               :           ,      #      12061
+      function rule                    :           ,      #      10461
+      no rule applicable               :           ,      #       1600
+    applyAnywhereRules time          :           ,      #       4798
+      no anywhere rules                :           ,      #       4798
+    # cached                         :           ,      #     526752
+==================================
+

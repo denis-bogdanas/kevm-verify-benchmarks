@@ -1,0 +1,169 @@
+/home/sbugrara/kevm-verify-benchmarks/.build/k/k-distribution/target/release/k/bin/kprove -v --debug -d /home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java -m VERIFICATION --z3-impl-timeout 500 --deterministic-functions --no-exc-wrap --cache-func-optimized --no-alpha-renaming --format-failures --boundary-cells k,pc --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,#pc,#result --smt-prelude ../resources/evm.smt2  generated-k/execute-executor-invalid-spec.k
+Parse command line options                                   =  0.000s
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/././generated-k/execute-executor-invalid-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/execute-executor-invalid-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/abstract-semantics.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/evm-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/edsl.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/evm.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/data.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/krypto.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/network.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/ecrec-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/verification.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/evm-data-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/lemmas.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/edsl-static-array.k)
+Parse spec modules [269/1209 rules]                          =  0.013s
+
+Parsing finished:   42.680 s
+
+Initialization finished
+==================================
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :   44.029 s,	  892 MB, gc:  3.053 %
+  Parsing             :   42.680 s,	  355 MB, gc:  3.149 %
+  Init                :    1.349 s,	  892 MB, gc:  0.000 %
+
+Init+Execution time:       1.349 s
+  query build time                 :    0.022 s,      #         14
+  Z3 Function rule implication time:    0.160 s,      #         12
+      sat           :       12
+    query build failures: 2
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    0.942 s,      #        586
+    evaluateFunction time            :    0.935 s,      #        153
+      builtin evaluation               :           ,      #         16
+      function rule                    :           ,      #         45
+      no rule applicable               :           ,      #         92
+    applyAnywhereRules time          :    0.001 s,      #        243
+      no anywhere rules                :           ,      #        243
+    remaining time & # cached        :    0.006 s,      #        190
+  impliesSMT time                  :    0.187 s,      #         14
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     552081
+    evaluateFunction time            :           ,      #      22439
+      builtin evaluation               :           ,      #      11904
+      function rule                    :           ,      #       9115
+      no rule applicable               :           ,      #       1289
+    applyAnywhereRules time          :           ,      #       4509
+      no anywhere rules                :           ,      #       4509
+    # cached                         :           ,      #     525133
+==================================
+
+
+SPEC PROVED: /home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/execute-executor-invalid-spec.k Location(11,5,156,17)
+==================================
+Execution paths: 1
+Longest path: 5876 steps
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :   96.886 s,	  847 MB, gc:  1.933 %
+  Parsing             :   42.680 s,	  355 MB, gc:  3.149 %
+  Init                :    1.349 s,	  892 MB, gc:  0.000 %
+  Execution           :   52.857 s,	  847 MB, gc:  1.001 %
+
+Init+Execution time:      54.206 s
+  query build time                 :    1.166 s,      #       1787
+  Z3 Function rule implication time:    1.059 s,      #         85
+      sat           :       45
+      unsat (proved):       40
+    cached queries:       1086
+    query build failures: 469
+  Z3 Spec rule constraint time     :   15.005 s,      #       1224
+      sat           :       1224
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    5.487 s,      #    8250580
+    evaluateFunction time            :    4.478 s,      #      66217
+      builtin evaluation               :           ,      #       2138
+      function rule                    :           ,      #       2025
+      sort predicate                   :           ,      #       1081
+      no rule applicable               :           ,      #      60973
+    applyAnywhereRules time          :    0.007 s,      #      40188
+      no anywhere rules                :           ,      #      40188
+    remaining time & # cached        :    1.002 s,      #    8144175
+  impliesSMT time                  :    1.290 s,      #       2042
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     987457
+    evaluateFunction time            :           ,      #      32260
+      builtin evaluation               :           ,      #      14431
+      function rule                    :           ,      #      15315
+      sort predicate                   :           ,      #        131
+      no rule applicable               :           ,      #       2306
+    applyAnywhereRules time          :           ,      #       4875
+      no anywhere rules                :           ,      #       4875
+    # cached                         :           ,      #     950322
+
+Max memory : 3641 MB
+==================================
+
+#True
+[Warning] Internal: execution phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
+[Warning] Internal: execution phase: missing SMTLib translation for #symCmem . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #symCmem)
+[Warning] Internal: execution phase: missing SMTLib translation for Set:in . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for Set:in)
+[Warning] Internal: execution phase: missing SMTLib translation for log2Int . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for log2Int)
+[Warning] Internal: init phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
+/home/sbugrara/kevm-verify-benchmarks/.build/k/k-distribution/target/release/k/bin/kprove -v --debug -d /home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java -m VERIFICATION --z3-impl-timeout 500 --deterministic-functions --no-exc-wrap --cache-func-optimized --no-alpha-renaming --format-failures --boundary-cells k,pc --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,#pc,#result --smt-prelude ../resources/evm.smt2  generated-k/execute-executor-valid-sigcheck-fail-revert-2-spec.k
+Parse command line options                                   =  0.000s
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/././generated-k/execute-executor-valid-sigcheck-fail-revert-2-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/execute-executor-valid-sigcheck-fail-revert-2-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/abstract-semantics.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/evm-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/edsl.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/evm.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/data.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/krypto.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/network.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/ecrec-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/verification.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/evm-data-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/lemmas.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/SimpleMultiSigK3_00/generated-k/edsl-static-array.k)
+Parse spec modules [3/1209 rules]                            =  0.013s
+
+Parsing finished:   42.672 s
+
+Initialization finished
+==================================
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :   44.485 s,	  486 MB, gc:  3.514 %
+  Parsing             :   42.672 s,	  679 MB, gc:  3.663 %
+  Init                :    1.813 s,	  486 MB, gc:  0.000 %
+
+Init+Execution time:       1.813 s
+  query build time                 :    0.054 s,      #         56
+  Z3 Function rule implication time:    0.188 s,      #         14
+      sat           :       14
+    query build failures: 42
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    1.281 s,      #        791
+    evaluateFunction time            :    1.273 s,      #        221
+      builtin evaluation               :           ,      #         16
+      function rule                    :           ,      #         64
+      no rule applicable               :           ,      #        141
+    applyAnywhereRules time          :    0.001 s,      #        369
+      no anywhere rules                :           ,      #        369
+    remaining time & # cached        :    0.008 s,      #        201
+  impliesSMT time                  :    0.248 s,      #         56
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     553712
+    evaluateFunction time            :           ,      #      23455
+      builtin evaluation               :           ,      #      12028
+      function rule                    :           ,      #       9759
+      no rule applicable               :           ,      #       1537
+    applyAnywhereRules time          :           ,      #       4701
+      no anywhere rules                :           ,      #       4701
+    # cached                         :           ,      #     525556
+==================================
+
+Profiler Agent: Waiting for connection on port 5140 (Protocol version: 18)
+Profiler Agent: Established connection with the tool
+Profiler Agent: Local accelerated session
+Profiler Agent: Connection with agent closed
+../resources/kprove.mak:131: recipe for target 'generated-k/execute-executor-valid-sigcheck-fail-revert-2-spec.k.test' failed
+make: *** [generated-k/execute-executor-valid-sigcheck-fail-revert-2-spec.k.test] Killed
