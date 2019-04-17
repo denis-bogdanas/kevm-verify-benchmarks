@@ -15,13 +15,13 @@ contract SimpleMultiSigK3_00 {
     bytes32 DOMAIN_SEPARATOR;
 
     function execute(   uint8[3] memory sigV, bytes32[3] memory sigR, bytes32[3] memory sigS,
-                        address destination, uint value, bytes memory data, address executor, uint gasLimit)
+                        address destination, uint value, bytes memory data, address executor, uint gasLimit, bytes32 totalHash)
         public returns(uint256) {
 
-        require(executor == msg.sender || executor == address(0));
+        //require(executor == msg.sender || executor == address(0));
 
-        bytes32 txInputHash = keccak256(abi.encode(TXTYPE_HASH, destination, value, keccak256(data), nonce, executor, gasLimit));
-        bytes32 totalHash = keccak256(abi.encodePacked(byte(0x19), byte(0x01), DOMAIN_SEPARATOR, txInputHash));
+        //bytes32 txInputHash = keccak256(abi.encode(TXTYPE_HASH, destination, value, keccak256(data), nonce, executor, gasLimit));
+        //bytes32 totalHash = keccak256(abi.encodePacked(byte(0x19), byte(0x01), DOMAIN_SEPARATOR, txInputHash));
 
         address lastAdd = address(0);
         for (uint i = 0; i < THRESHOLD; i++) {
