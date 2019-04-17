@@ -1,10 +1,10 @@
-pragma solidity 0.4.24;
+pragma solidity 0.5.0;
 
 contract ecrecover_multi_03 {
 
     uint constant THRESHOLD = 3;
 
-    function get(bytes32 hash, uint8[3] sigV, bytes32[3] sigR, bytes32[3] sigS) public returns(uint256) {
+    function get(bytes32 hash, uint8[3] memory sigV, bytes32[3] memory sigR, bytes32[3] memory sigS) public returns(uint256) {
 
         address lastAdd = address(0);
         for (uint i = 0; i < THRESHOLD; i++) {

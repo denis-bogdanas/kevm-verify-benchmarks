@@ -1,0 +1,705 @@
+/home/sbugrara/kevm-verify-benchmarks/.build/k/k-distribution/target/release/k/bin/kprove -v --debug -d /home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java -m VERIFICATION --z3-impl-timeout 500 --deterministic-functions --no-exc-wrap --cache-func-optimized --no-alpha-renaming --format-failures --boundary-cells k,pc --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,#pc,#result --smt-prelude ../resources/evm.smt2  generated-k/get-recovered-success-spec.k
+Parse command line options                                   =  0.000s
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/././generated-k/get-recovered-success-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/get-recovered-success-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/abstract-semantics.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/evm-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/edsl.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/evm.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/data.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/krypto.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/network.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/ecrec-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/verification.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/evm-data-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/lemmas.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/edsl-static-array.k)
+Parse spec modules [3/1209 rules]                            =  0.012s
+
+Parsing finished:   39.624 s
+
+Initialization finished
+==================================
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :   40.631 s,	  523 MB, gc:  2.481 %
+  Parsing             :   39.624 s,	  255 MB, gc:  2.544 %
+  Init                :    1.007 s,	  523 MB, gc:  0.000 %
+
+Init+Execution time:       1.007 s
+  query build time                 :    0.019 s,      #         10
+  Z3 Function rule implication time:    0.105 s,      #          8
+      sat           :       8
+    query build failures: 2
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    0.569 s,      #        671
+    evaluateFunction time            :    0.562 s,      #        191
+      builtin evaluation               :           ,      #         13
+      function rule                    :           ,      #         66
+      no rule applicable               :           ,      #        112
+    applyAnywhereRules time          :    0.001 s,      #        291
+      no anywhere rules                :           ,      #        291
+    remaining time & # cached        :    0.006 s,      #        189
+  impliesSMT time                  :    0.129 s,      #         10
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     130682
+    evaluateFunction time            :           ,      #      10090
+      builtin evaluation               :           ,      #       5286
+      function rule                    :           ,      #       4196
+      no rule applicable               :           ,      #        502
+    applyAnywhereRules time          :           ,      #       1909
+      no anywhere rules                :           ,      #       1909
+    # cached                         :           ,      #     118683
+==================================
+
+
+SPEC PROVED: /home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/get-recovered-success-spec.k Location(11,5,148,17)
+==================================
+Execution paths: 2
+Longest path: 10575 steps
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :  170.267 s,	 1385 MB, gc:  2.987 %
+  Parsing             :   39.624 s,	  255 MB, gc:  2.544 %
+  Init                :    1.007 s,	  523 MB, gc:  0.000 %
+  Execution           :  129.635 s,	 1385 MB, gc:  3.146 %
+
+Init+Execution time:     130.642 s
+  query build time                 :    2.847 s,      #       4396
+  Z3 Regular rule implication time :    0.055 s,      #          5
+      sat           :       2
+      unsat (proved):       3
+    cached queries:       2
+  Z3 Function rule implication time:    0.235 s,      #         19
+      sat           :       14
+      unsat (proved):       5
+    cached queries:       2061
+    query build failures: 934
+  Z3 Spec rule implication time    :    0.071 s,      #          6
+      sat           :       6
+  Z3 Regular rule constraint time  :    0.251 s,      #         23
+      sat           :       13
+      unsat (proved):       10
+  Z3 Spec rule constraint time     :   39.935 s,      #       3409
+      sat           :       3409
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    9.091 s,      #    7961654
+    evaluateFunction time            :    6.679 s,      #     280262
+      builtin evaluation               :           ,      #       2328
+      function rule                    :           ,      #       4559
+      sort predicate                   :           ,      #       1796
+      no rule applicable               :           ,      #     271579
+    applyAnywhereRules time          :    0.020 s,      #     110862
+      no anywhere rules                :           ,      #     110862
+    remaining time & # cached        :    2.392 s,      #    7570530
+  impliesSMT time                  :    0.579 s,      #       3027
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     509994
+    evaluateFunction time            :           ,      #      30948
+      builtin evaluation               :           ,      #      11300
+      function rule                    :           ,      #      16292
+      sort predicate                   :           ,      #        106
+      no rule applicable               :           ,      #       2967
+    applyAnywhereRules time          :           ,      #       2416
+      no anywhere rules                :           ,      #       2416
+    # cached                         :           ,      #     476630
+
+Max memory : 3641 MB
+==================================
+
+#True
+[Warning] Internal: execution phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
+[Warning] Internal: execution phase: missing SMTLib translation for Set:in . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for Set:in)
+[Warning] Internal: execution phase: missing SMTLib translation for log2Int . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for log2Int)
+[Warning] Internal: init phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
+/home/sbugrara/kevm-verify-benchmarks/.build/k/k-distribution/target/release/k/bin/kprove -v --debug -d /home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java -m VERIFICATION --z3-impl-timeout 500 --deterministic-functions --no-exc-wrap --cache-func-optimized --no-alpha-renaming --format-failures --boundary-cells k,pc --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,#pc,#result --smt-prelude ../resources/evm.smt2  generated-k/get-unrecovered-0-spec.k
+Parse command line options                                   =  0.000s
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/././generated-k/get-unrecovered-0-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/get-unrecovered-0-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/abstract-semantics.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/evm-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/edsl.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/evm.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/data.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/krypto.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/network.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/ecrec-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/verification.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/evm-data-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/lemmas.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/edsl-static-array.k)
+Parse spec modules [3/1209 rules]                            =  0.012s
+
+Parsing finished:   39.711 s
+
+Initialization finished
+==================================
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :   40.582 s,	  492 MB, gc:  2.836 %
+  Parsing             :   39.711 s,	  237 MB, gc:  2.898 %
+  Init                :    0.871 s,	  492 MB, gc:  0.000 %
+
+Init+Execution time:       0.871 s
+  query build time                 :    0.014 s,      #         10
+  Z3 Function rule implication time:    0.097 s,      #          8
+      sat           :       8
+    query build failures: 2
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    0.460 s,      #        559
+    evaluateFunction time            :    0.453 s,      #        119
+      builtin evaluation               :           ,      #         13
+      function rule                    :           ,      #         40
+      no rule applicable               :           ,      #         66
+    applyAnywhereRules time          :    0.001 s,      #        260
+      no anywhere rules                :           ,      #        260
+    remaining time & # cached        :    0.006 s,      #        180
+  impliesSMT time                  :    0.114 s,      #         10
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     128630
+    evaluateFunction time            :           ,      #       9255
+      builtin evaluation               :           ,      #       5222
+      function rule                    :           ,      #       3505
+      no rule applicable               :           ,      #        422
+    applyAnywhereRules time          :           ,      #       1878
+      no anywhere rules                :           ,      #       1878
+    # cached                         :           ,      #     117497
+==================================
+
+
+SPEC PROVED: /home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/get-unrecovered-0-spec.k Location(11,5,141,17)
+==================================
+Execution paths: 2
+Longest path: 5445 steps
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :   88.775 s,	  487 MB, gc:  2.369 %
+  Parsing             :   39.711 s,	  237 MB, gc:  2.898 %
+  Init                :    0.871 s,	  492 MB, gc:  0.000 %
+  Execution           :   48.193 s,	  487 MB, gc:  1.975 %
+
+Init+Execution time:      49.064 s
+  query build time                 :    1.087 s,      #       1625
+  Z3 Regular rule implication time :    0.035 s,      #          3
+      sat           :       2
+      unsat (proved):       1
+  Z3 Function rule implication time:    0.120 s,      #         10
+      sat           :       9
+      unsat (proved):       1
+    cached queries:       885
+    query build failures: 368
+  Z3 Regular rule constraint time  :    0.083 s,      #          7
+      sat           :       5
+      unsat (proved):       2
+  Z3 Spec rule constraint time     :   14.342 s,      #       1237
+      sat           :       1237
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    2.821 s,      #    2656325
+    evaluateFunction time            :    2.337 s,      #      51215
+      builtin evaluation               :           ,      #       2095
+      function rule                    :           ,      #       1777
+      sort predicate                   :           ,      #        970
+      no rule applicable               :           ,      #      46373
+    applyAnywhereRules time          :    0.009 s,      #      39172
+      no anywhere rules                :           ,      #      39172
+    remaining time & # cached        :    0.476 s,      #    2565938
+  impliesSMT time                  :    0.238 s,      #       1266
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     346943
+    evaluateFunction time            :           ,      #      19077
+      builtin evaluation               :           ,      #       7528
+      function rule                    :           ,      #      10143
+      sort predicate                   :           ,      #        106
+      no rule applicable               :           ,      #       1215
+    applyAnywhereRules time          :           ,      #       2200
+      no anywhere rules                :           ,      #       2200
+    # cached                         :           ,      #     325666
+
+Max memory : 3641 MB
+==================================
+
+#True
+[Warning] Internal: execution phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
+[Warning] Internal: execution phase: missing SMTLib translation for Set:in . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for Set:in)
+[Warning] Internal: execution phase: missing SMTLib translation for log2Int . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for log2Int)
+[Warning] Internal: init phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
+/home/sbugrara/kevm-verify-benchmarks/.build/k/k-distribution/target/release/k/bin/kprove -v --debug -d /home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java -m VERIFICATION --z3-impl-timeout 500 --deterministic-functions --no-exc-wrap --cache-func-optimized --no-alpha-renaming --format-failures --boundary-cells k,pc --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,#pc,#result --smt-prelude ../resources/evm.smt2  generated-k/get-unrecovered-1-spec.k
+Parse command line options                                   =  0.000s
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/././generated-k/get-unrecovered-1-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/get-unrecovered-1-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/abstract-semantics.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/evm-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/edsl.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/evm.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/data.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/krypto.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/network.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/ecrec-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/verification.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/evm-data-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/lemmas.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/edsl-static-array.k)
+Parse spec modules [3/1209 rules]                            =  0.012s
+
+Parsing finished:   39.209 s
+
+Initialization finished
+==================================
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :   40.239 s,	  373 MB, gc:  2.092 %
+  Parsing             :   39.209 s,	  508 MB, gc:  2.147 %
+  Init                :    1.030 s,	  373 MB, gc:  0.000 %
+
+Init+Execution time:       1.030 s
+  query build time                 :    0.014 s,      #         10
+  Z3 Function rule implication time:    0.098 s,      #          8
+      sat           :       8
+    query build failures: 2
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    0.609 s,      #        559
+    evaluateFunction time            :    0.602 s,      #        119
+      builtin evaluation               :           ,      #         13
+      function rule                    :           ,      #         40
+      no rule applicable               :           ,      #         66
+    applyAnywhereRules time          :    0.001 s,      #        260
+      no anywhere rules                :           ,      #        260
+    remaining time & # cached        :    0.007 s,      #        180
+  impliesSMT time                  :    0.116 s,      #         10
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     128630
+    evaluateFunction time            :           ,      #       9255
+      builtin evaluation               :           ,      #       5222
+      function rule                    :           ,      #       3505
+      no rule applicable               :           ,      #        422
+    applyAnywhereRules time          :           ,      #       1878
+      no anywhere rules                :           ,      #       1878
+    # cached                         :           ,      #     117497
+==================================
+
+
+SPEC PROVED: /home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/get-unrecovered-1-spec.k Location(11,5,141,17)
+==================================
+Execution paths: 4
+Longest path: 7650 steps
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :  134.629 s,	  504 MB, gc:  2.833 %
+  Parsing             :   39.209 s,	  508 MB, gc:  2.147 %
+  Init                :    1.030 s,	  373 MB, gc:  0.000 %
+  Execution           :   94.390 s,	  504 MB, gc:  3.149 %
+
+Init+Execution time:      95.421 s
+  query build time                 :    1.977 s,      #       3012
+  Z3 Regular rule implication time :    0.057 s,      #          5
+      sat           :       2
+      unsat (proved):       3
+    cached queries:       4
+  Z3 Function rule implication time:    0.207 s,      #         17
+      sat           :       12
+      unsat (proved):       5
+    cached queries:       16241
+    query build failures: 776
+  Z3 Regular rule constraint time  :    0.280 s,      #         23
+      sat           :       17
+      unsat (proved):       6
+  Z3 Spec rule constraint time     :   25.804 s,      #       2187
+      sat           :       2187
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :   11.474 s,      #    5245238
+    evaluateFunction time            :   10.150 s,      #     129897
+      builtin evaluation               :           ,      #       2193
+      function rule                    :           ,      #       3024
+      sort predicate                   :           ,      #       1364
+      no rule applicable               :           ,      #     122338
+      no function rules                :           ,      #        978
+    applyAnywhereRules time          :    0.012 s,      #      62681
+      no anywhere rules                :           ,      #      62681
+    remaining time & # cached        :    1.313 s,      #    5052660
+  impliesSMT time                  :    0.576 s,      #      17047
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     911344
+    evaluateFunction time            :           ,      #     110541
+      builtin evaluation               :           ,      #      12059
+      function rule                    :           ,      #      66584
+      sort predicate                   :           ,      #        106
+      no rule applicable               :           ,      #      20876
+      no function rules                :           ,      #      10888
+    applyAnywhereRules time          :           ,      #       3245
+      no anywhere rules                :           ,      #       3245
+    # cached                         :           ,      #     797558
+
+Max memory : 3641 MB
+==================================
+
+#True
+[Warning] Internal: execution phase: BuiltinMap can be translated to Z3 only through fresh var . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (BuiltinMap can be translated to Z3 only through fresh var)
+[Warning] Internal: execution phase: missing SMTLib translation for #ecrec . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #ecrec)
+[Warning] Internal: execution phase: missing SMTLib translation for #ecrecEmpty . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #ecrecEmpty)
+[Warning] Internal: execution phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
+[Warning] Internal: execution phase: missing SMTLib translation for #take . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #take)
+[Warning] Internal: execution phase: missing SMTLib translation for ECDSARecover . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for ECDSARecover)
+[Warning] Internal: execution phase: missing SMTLib translation for Set:in . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for Set:in)
+[Warning] Internal: execution phase: missing SMTLib translation for _&Int__INT-COMMON . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for _&Int__INT-COMMON)
+[Warning] Internal: execution phase: missing SMTLib translation for log2Int . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for log2Int)
+[Warning] Internal: init phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
+/home/sbugrara/kevm-verify-benchmarks/.build/k/k-distribution/target/release/k/bin/kprove -v --debug -d /home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java -m VERIFICATION --z3-impl-timeout 500 --deterministic-functions --no-exc-wrap --cache-func-optimized --no-alpha-renaming --format-failures --boundary-cells k,pc --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,#pc,#result --smt-prelude ../resources/evm.smt2  generated-k/get-unrecovered-2-spec.k
+Parse command line options                                   =  0.000s
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/././generated-k/get-unrecovered-2-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/get-unrecovered-2-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/abstract-semantics.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/evm-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/edsl.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/evm.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/data.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/krypto.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/network.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/ecrec-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/verification.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/evm-data-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/lemmas.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/edsl-static-array.k)
+Parse spec modules [3/1209 rules]                            =  0.012s
+
+Parsing finished:   39.469 s
+
+Initialization finished
+==================================
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :   40.381 s,	  300 MB, gc:  2.647 %
+  Parsing             :   39.469 s,	  416 MB, gc:  2.708 %
+  Init                :    0.911 s,	  300 MB, gc:  0.000 %
+
+Init+Execution time:       0.911 s
+  query build time                 :    0.016 s,      #         10
+  Z3 Function rule implication time:    0.100 s,      #          8
+      sat           :       8
+    query build failures: 2
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    0.512 s,      #        559
+    evaluateFunction time            :    0.504 s,      #        119
+      builtin evaluation               :           ,      #         13
+      function rule                    :           ,      #         40
+      no rule applicable               :           ,      #         66
+    applyAnywhereRules time          :    0.001 s,      #        260
+      no anywhere rules                :           ,      #        260
+    remaining time & # cached        :    0.007 s,      #        180
+  impliesSMT time                  :    0.122 s,      #         10
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     128630
+    evaluateFunction time            :           ,      #       9255
+      builtin evaluation               :           ,      #       5222
+      function rule                    :           ,      #       3505
+      no rule applicable               :           ,      #        422
+    applyAnywhereRules time          :           ,      #       1878
+      no anywhere rules                :           ,      #       1878
+    # cached                         :           ,      #     117497
+==================================
+
+
+SPEC PROVED: /home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/get-unrecovered-2-spec.k Location(11,5,141,17)
+==================================
+Execution paths: 6
+Longest path: 9855 steps
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :  193.356 s,	 1008 MB, gc:  2.832 %
+  Parsing             :   39.469 s,	  416 MB, gc:  2.708 %
+  Init                :    0.911 s,	  300 MB, gc:  0.000 %
+  Execution           :  152.975 s,	 1008 MB, gc:  2.880 %
+
+Init+Execution time:     153.887 s
+  query build time                 :    2.715 s,      #       4545
+  Z3 Regular rule implication time :    0.084 s,      #          7
+      sat           :       2
+      unsat (proved):       5
+    cached queries:       8
+  Z3 Function rule implication time:    0.249 s,      #         20
+      sat           :       13
+      unsat (proved):       7
+    cached queries:       71203
+    query build failures: 1334
+  Z3 Regular rule constraint time  :    0.458 s,      #         39
+      sat           :       29
+      unsat (proved):       10
+  Z3 Spec rule constraint time     :   37.038 s,      #       3137
+      sat           :       3137
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :   29.528 s,      #    8235121
+    evaluateFunction time            :   26.889 s,      #     275896
+      builtin evaluation               :           ,      #       2229
+      function rule                    :           ,      #       4273
+      sort predicate                   :           ,      #       1753
+      no rule applicable               :           ,      #     263757
+      no function rules                :           ,      #       3884
+    applyAnywhereRules time          :    0.017 s,      #      86167
+      no anywhere rules                :           ,      #      86167
+    remaining time & # cached        :    2.623 s,      #    7873058
+  impliesSMT time                  :    1.314 s,      #      72580
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #    2528721
+    evaluateFunction time            :           ,      #     387148
+      builtin evaluation               :           ,      #      22555
+      function rule                    :           ,      #     235259
+      sort predicate                   :           ,      #        106
+      no rule applicable               :           ,      #      84245
+      no function rules                :           ,      #      44955
+    applyAnywhereRules time          :           ,      #       6222
+      no anywhere rules                :           ,      #       6222
+    # cached                         :           ,      #    2135351
+
+Max memory : 3641 MB
+==================================
+
+#True
+[Warning] Internal: execution phase: BuiltinMap can be translated to Z3 only through fresh var . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (BuiltinMap can be translated to Z3 only through fresh var)
+[Warning] Internal: execution phase: missing SMTLib translation for #ecrec . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #ecrec)
+[Warning] Internal: execution phase: missing SMTLib translation for #ecrecEmpty . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #ecrecEmpty)
+[Warning] Internal: execution phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
+[Warning] Internal: execution phase: missing SMTLib translation for #take . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #take)
+[Warning] Internal: execution phase: missing SMTLib translation for ECDSARecover . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for ECDSARecover)
+[Warning] Internal: execution phase: missing SMTLib translation for Set:in . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for Set:in)
+[Warning] Internal: execution phase: missing SMTLib translation for _&Int__INT-COMMON . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for _&Int__INT-COMMON)
+[Warning] Internal: execution phase: missing SMTLib translation for log2Int . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for log2Int)
+[Warning] Internal: init phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
+/home/sbugrara/kevm-verify-benchmarks/.build/k/k-distribution/target/release/k/bin/kprove -v --debug -d /home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java -m VERIFICATION --z3-impl-timeout 500 --deterministic-functions --no-exc-wrap --cache-func-optimized --no-alpha-renaming --format-failures --boundary-cells k,pc --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,#pc,#result --smt-prelude ../resources/evm.smt2  generated-k/get-recovered-unsorted-0-spec.k
+Parse command line options                                   =  0.000s
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/././generated-k/get-recovered-unsorted-0-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/get-recovered-unsorted-0-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/abstract-semantics.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/evm-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/edsl.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/evm.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/data.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/krypto.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/network.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/ecrec-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/verification.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/evm-data-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/lemmas.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/edsl-static-array.k)
+Parse spec modules [3/1209 rules]                            =  0.012s
+
+Parsing finished:   41.224 s
+
+Initialization finished
+==================================
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :   42.293 s,	  226 MB, gc:  2.733 %
+  Parsing             :   41.224 s,	  456 MB, gc:  2.804 %
+  Init                :    1.069 s,	  226 MB, gc:  0.000 %
+
+Init+Execution time:       1.069 s
+  query build time                 :    0.015 s,      #         10
+  Z3 Function rule implication time:    0.099 s,      #          8
+      sat           :       8
+    query build failures: 2
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    0.543 s,      #        633
+    evaluateFunction time            :    0.535 s,      #        167
+      builtin evaluation               :           ,      #         13
+      function rule                    :           ,      #         59
+      no rule applicable               :           ,      #         95
+    applyAnywhereRules time          :    0.001 s,      #        284
+      no anywhere rules                :           ,      #        284
+    remaining time & # cached        :    0.007 s,      #        182
+  impliesSMT time                  :    0.117 s,      #         10
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     128694
+    evaluateFunction time            :           ,      #       9304
+      builtin evaluation               :           ,      #       5222
+      function rule                    :           ,      #       3520
+      no rule applicable               :           ,      #        456
+    applyAnywhereRules time          :           ,      #       1878
+      no anywhere rules                :           ,      #       1878
+    # cached                         :           ,      #     117512
+==================================
+
+
+SPEC PROVED: /home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/get-recovered-unsorted-0-spec.k Location(11,5,147,17)
+==================================
+Execution paths: 2
+Longest path: 7650 steps
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :  123.031 s,	  799 MB, gc:  2.841 %
+  Parsing             :   41.224 s,	  456 MB, gc:  2.804 %
+  Init                :    1.069 s,	  226 MB, gc:  0.000 %
+  Execution           :   80.738 s,	  799 MB, gc:  2.897 %
+
+Init+Execution time:      81.807 s
+  query build time                 :    1.979 s,      #       2848
+  Z3 Regular rule implication time :    0.055 s,      #          5
+      sat           :       2
+      unsat (proved):       3
+  Z3 Function rule implication time:    0.184 s,      #         15
+      sat           :       12
+      unsat (proved):       3
+    cached queries:       1471
+    query build failures: 638
+  Z3 Spec rule implication time    :    0.048 s,      #          4
+      sat           :       4
+  Z3 Regular rule constraint time  :    0.167 s,      #         15
+      sat           :       9
+      unsat (proved):       6
+  Z3 Spec rule constraint time     :   25.334 s,      #       2171
+      sat           :       2171
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    5.865 s,      #    4879439
+    evaluateFunction time            :    4.653 s,      #     149081
+      builtin evaluation               :           ,      #       2191
+      function rule                    :           ,      #       3022
+      sort predicate                   :           ,      #       1343
+      no rule applicable               :           ,      #     142525
+    applyAnywhereRules time          :    0.012 s,      #      70261
+      no anywhere rules                :           ,      #      70261
+    remaining time & # cached        :    1.201 s,      #    4660097
+  impliesSMT time                  :    0.435 s,      #       2133
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     416815
+    evaluateFunction time            :           ,      #      23888
+      builtin evaluation               :           ,      #       9103
+      function rule                    :           ,      #      12481
+      sort predicate                   :           ,      #        106
+      no rule applicable               :           ,      #       2015
+    applyAnywhereRules time          :           ,      #       2260
+      no anywhere rules                :           ,      #       2260
+    # cached                         :           ,      #     390667
+
+Max memory : 3641 MB
+==================================
+
+#True
+[Warning] Internal: execution phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
+[Warning] Internal: execution phase: missing SMTLib translation for Set:in . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for Set:in)
+[Warning] Internal: execution phase: missing SMTLib translation for log2Int . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for log2Int)
+[Warning] Internal: init phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
+/home/sbugrara/kevm-verify-benchmarks/.build/k/k-distribution/target/release/k/bin/kprove -v --debug -d /home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java -m VERIFICATION --z3-impl-timeout 500 --deterministic-functions --no-exc-wrap --cache-func-optimized --no-alpha-renaming --format-failures --boundary-cells k,pc --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,#pc,#result --smt-prelude ../resources/evm.smt2  generated-k/get-recovered-unsorted-1-spec.k
+Parse command line options                                   =  0.000s
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/././generated-k/get-recovered-unsorted-1-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/get-recovered-unsorted-1-spec.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/abstract-semantics.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/evm-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/edsl.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/evm.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/data.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/krypto.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/.build/evm-semantics/.build/java/network.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/ecrec-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/verification.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/evm-data-symbolic.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/lemmas.k)
+Importing: Source(/home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/edsl-static-array.k)
+Parse spec modules [3/1209 rules]                            =  0.013s
+
+Parsing finished:   39.691 s
+
+Initialization finished
+==================================
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :   40.707 s,	  269 MB, gc:  2.916 %
+  Parsing             :   39.691 s,	  494 MB, gc:  2.991 %
+  Init                :    1.016 s,	  269 MB, gc:  0.000 %
+
+Init+Execution time:       1.016 s
+  query build time                 :    0.014 s,      #         10
+  Z3 Function rule implication time:    0.096 s,      #          8
+      sat           :       8
+    query build failures: 2
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    0.614 s,      #        633
+    evaluateFunction time            :    0.605 s,      #        167
+      builtin evaluation               :           ,      #         13
+      function rule                    :           ,      #         59
+      no rule applicable               :           ,      #         95
+    applyAnywhereRules time          :    0.001 s,      #        284
+      no anywhere rules                :           ,      #        284
+    remaining time & # cached        :    0.007 s,      #        182
+  impliesSMT time                  :    0.115 s,      #         10
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     128694
+    evaluateFunction time            :           ,      #       9304
+      builtin evaluation               :           ,      #       5222
+      function rule                    :           ,      #       3520
+      no rule applicable               :           ,      #        456
+    applyAnywhereRules time          :           ,      #       1878
+      no anywhere rules                :           ,      #       1878
+    # cached                         :           ,      #     117512
+==================================
+
+
+SPEC PROVED: /home/sbugrara/kevm-verify-benchmarks/ecrecover_multi_03/generated-k/get-recovered-unsorted-1-spec.k Location(11,5,147,17)
+==================================
+Execution paths: 4
+Longest path: 9855 steps
+Stats for each phase, time, used memory, implicit main GC time percentage:
+Total                 :  157.896 s,	 1519 MB, gc:  3.309 %
+  Parsing             :   39.691 s,	  494 MB, gc:  2.991 %
+  Init                :    1.016 s,	  269 MB, gc:  0.000 %
+  Execution           :  117.189 s,	 1519 MB, gc:  3.446 %
+
+Init+Execution time:     118.204 s
+  query build time                 :    2.667 s,      #       4125
+  Z3 Regular rule implication time :    0.078 s,      #          7
+      sat           :       2
+      unsat (proved):       5
+    cached queries:       4
+  Z3 Function rule implication time:    0.214 s,      #         18
+      sat           :       13
+      unsat (proved):       5
+    cached queries:       2167
+    query build failures: 940
+  Z3 Spec rule implication time    :    0.075 s,      #          6
+      sat           :       6
+  Z3 Regular rule constraint time  :    0.355 s,      #         31
+      sat           :       21
+      unsat (proved):       10
+  Z3 Spec rule constraint time     :   36.409 s,      #       3123
+      sat           :       3123
+
+  Time and top-level event counts:
+  resolveFunctionAndAnywhere time  :    9.647 s,      #    7186777
+    evaluateFunction time            :    7.622 s,      #     227308
+      builtin evaluation               :           ,      #       2227
+      function rule                    :           ,      #       4255
+      sort predicate                   :           ,      #       1732
+      no rule applicable               :           ,      #     219094
+    applyAnywhereRules time          :    0.017 s,      #      99354
+      no anywhere rules                :           ,      #      99354
+    remaining time & # cached        :    2.009 s,      #    6860115
+  impliesSMT time                  :    0.573 s,      #       3142
+
+  Recursive event counts:
+  resolveFunctionAndAnywhere time  :           ,      #     475892
+    evaluateFunction time            :           ,      #      29403
+      builtin evaluation               :           ,      #      10897
+      function rule                    :           ,      #      15242
+      sort predicate                   :           ,      #        106
+      no rule applicable               :           ,      #       2840
+    applyAnywhereRules time          :           ,      #       2329
+      no anywhere rules                :           ,      #       2329
+    # cached                         :           ,      #     444160
+
+Max memory : 3641 MB
+==================================
+
+#True
+[Warning] Internal: execution phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
+[Warning] Internal: execution phase: missing SMTLib translation for #symEcrec . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #symEcrec)
+[Warning] Internal: execution phase: missing SMTLib translation for Set:in . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for Set:in)
+[Warning] Internal: execution phase: missing SMTLib translation for log2Int . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for log2Int)
+[Warning] Internal: init phase: missing SMTLib translation for #isBuf . Please re-run with the --debug-z3 flag. Search the logs starting with 'Z3 warning' to see the Z3 implication that generated the warning. (missing SMTLib translation for #isBuf)
