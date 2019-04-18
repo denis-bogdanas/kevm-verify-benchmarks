@@ -7,11 +7,9 @@ contract SimpleMultiSigK3_00 {
     function execute(uint8[3] memory sigV, bytes32[3] memory sigR, bytes32[3] memory sigS, bytes memory data)
         public returns(uint256) {
 
-        address lastAdd = address(0);
         for (uint i = 0; i < THRESHOLD; i++) {
             address recovered = ecrecover("0x19", sigV[i], sigR[i], sigS[i]);
-            require(recovered > lastAdd);
-            lastAdd = recovered;
+            require(recovered > address(0));
         }
 
         return 5;
