@@ -137,8 +137,8 @@ andBool #rangeBytes(32, SIGR2)
 andBool #rangeBytes(32, SIGS0)
 andBool #rangeBytes(32, SIGS1)
 andBool #rangeBytes(32, SIGS2)
-andBool ECREC_DATA2 ==K #encodeArgs( #bytes32(5), #uint8(SIGV2), #bytes32(SIGR2), #bytes32(SIGS2) )
-andBool #ecrecEmpty( ECREC_DATA2 )
+andBool ECREC_DATA0 ==K #encodeArgs( #bytes32(5), #uint8(SIGV0), #bytes32(SIGR0), #bytes32(SIGS0) )
+andBool #ecrecEmpty( ECREC_DATA0 )
     ensures true
 
 
