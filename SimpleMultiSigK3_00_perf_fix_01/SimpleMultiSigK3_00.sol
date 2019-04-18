@@ -4,8 +4,7 @@ contract SimpleMultiSigK3_00 {
 
     uint256 constant THRESHOLD = 3;
 
-    function execute(   uint8[3] memory sigV, bytes32[3] memory sigR, bytes32[3] memory sigS,
-                        address destination, uint value, bytes memory data, address executor, uint gasLimit, bytes32 totalHash)
+    function execute(uint8[3] memory sigV, bytes32[3] memory sigR, bytes32[3] memory sigS, bytes memory data, bytes32 totalHash)
         public returns(uint256) {
 
         address lastAdd = address(0);
