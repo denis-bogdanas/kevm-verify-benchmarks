@@ -18,3 +18,4 @@ module EDSL-STATIC-ARRAY
     rule #enc(#staticarray1( T, N, ELMS )) => #encodeArgs(ELMS)
 
 endmodule
+
