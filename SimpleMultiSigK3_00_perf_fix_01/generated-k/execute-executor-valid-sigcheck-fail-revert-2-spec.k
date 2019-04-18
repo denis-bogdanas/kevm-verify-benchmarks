@@ -136,6 +136,7 @@ andBool #rangeUInt(256, DATA_LEN)
 andBool DATA_LEN <Int 2 ^Int 16
 andBool #rangeAddress(EXECUTOR)
 andBool #rangeUInt(256, GAS_LIMIT)
+andBool #rangeBytes(32, TX_TOTAL_HASH)
 
 andBool #rangeUInt(8, SIGV0)
 andBool #rangeUInt(8, SIGV1)
