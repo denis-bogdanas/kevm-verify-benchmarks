@@ -47,7 +47,7 @@ module EXECUTE-EXECUTOR-VALID-SIGCHECK-FAIL-REVERT-2-SPEC
         <substate>
           <selfDestruct> _ </selfDestruct>
           <log> _ </log>
-          <refund> _ => _ </refund>
+          <refund> _ </refund>
         </substate>
         <gasPrice> _ </gasPrice>
         <origin> _ </origin> // tx.origin
@@ -129,10 +129,9 @@ _
 andBool #rangeUInt(256, CONTRACT_BAL)
 andBool #range(0 <= CD < 1024)
 andBool #rangeAddress(MSG_SENDER)
+
 andBool #rangeAddress(DESTINATION)
 andBool #rangeUInt(256, VALUE)
-andBool #rangeUInt(256, DATA_LEN)
-andBool DATA_LEN <Int 2 ^Int 16
 andBool #rangeAddress(EXECUTOR)
 andBool #rangeUInt(256, GAS_LIMIT)
 
