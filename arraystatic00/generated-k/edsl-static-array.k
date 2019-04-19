@@ -17,4 +17,11 @@ module EDSL-STATIC-ARRAY
 
     rule #enc(#staticarray1( T, N, ELMS )) => #encodeArgs(ELMS)
 
+    syntax WordStack ::= #abiCallData2 ( String , TypedArgs ) [function]
+
+    rule #abiCallData2( FSIG , ARGS )
+      => #parseByteStack(substrString(Keccak256(FSIG), 0, 8))
+      ++ #encodeArgs(ARGS)
+
 endmodule
+
