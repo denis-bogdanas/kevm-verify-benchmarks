@@ -6,7 +6,7 @@ contract ecrecover_multi_07 {
     mapping(address => bool) isOwner;
 
     function get(uint8[3] memory sigV, bytes32[3] memory sigR, bytes32[3] memory sigS,
-        address destination, uint value, bytes memory data, bytes32 totalHash) public returns(uint256) {
+        address destination, uint value, bytes memory data, address executor, bytes32 totalHash) public returns(uint256) {
 
         address lastAdd = address(0);
         for (uint i = 0; i < THRESHOLD; i++) {
