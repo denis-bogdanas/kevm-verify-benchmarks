@@ -5,7 +5,6 @@ OUT_DIR=generated
 SOL=`find . -name "*.sol"`
 
 /opt/solc-0.5.0 --overwrite -o $OUT_DIR --bin-runtime $SOL
-echo "Internal: $?"
 
 BIN_RUNTIME_FILE=${SOL/.sol/.bin-runtime}
 BIN_RUNTIME=0x`cat $OUT_DIR/$BIN_RUNTIME_FILE`
