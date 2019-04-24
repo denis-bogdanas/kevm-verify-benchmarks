@@ -70,7 +70,10 @@ export LUA_PATH
 
 .PHONY: all clean clean-deps deps split-proof-tests test
 
-all: deps split-proof-tests
+all: deps clean compile split-proof-tests test
+
+compile:
+	bash $(RESOURCES)/compile5
 
 clean:
 	rm -rf $(SPECS_DIR)
