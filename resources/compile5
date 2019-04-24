@@ -1,8 +1,7 @@
-OUT_DIR=generated-evm
+OUT_DIR=generated
 
 SOL=`find . -name "*.sol"`
 
-rm -rf $OUT_DIR
 /opt/solc-0.5.0 --overwrite -o $OUT_DIR --bin-runtime $SOL
 
 BIN_RUNTIME_FILE=${SOL/.sol/.bin-runtime}

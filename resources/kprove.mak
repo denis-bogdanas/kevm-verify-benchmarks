@@ -19,7 +19,7 @@ LOCAL_LEMMAS?=../resources/abstract-semantics.k ../resources/verification.k \
                 ../resources/edsl-static-array.k \
                 ../resources/abstract-semantics-common.k
 TMPLS?=../resources/module-tmpl.k ../resources/spec-tmpl.k
-SPECS_DIR?=./generated-k
+SPECS_DIR?=./generated
 
 # additional options to kprove command
 KPROVE_OPTS?=--smt-prelude ../resources/evm.smt2
@@ -70,10 +70,7 @@ export LUA_PATH
 
 .PHONY: all clean clean-deps deps split-proof-tests test
 
-all: deps clean compile split-proof-tests test
-
-compile:
-	bash $(RESOURCES)/compile5
+all: deps clean split-proof-tests test
 
 clean:
 	rm -rf $(SPECS_DIR)
@@ -112,6 +109,7 @@ $(SPECS_DIR): $(LOCAL_LEMMAS)
 ifneq ($(strip $(LOCAL_LEMMAS)),)
 	cp $(LOCAL_LEMMAS) $@
 endif
+	bash $(RESOURCES)/compile5
 
 ifneq ($(wildcard $(SPEC_INI:.ini=.md)),)
 $(SPEC_INI): $(SPEC_INI:.ini=.md) $(TANGLER)
