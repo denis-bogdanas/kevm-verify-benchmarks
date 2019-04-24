@@ -1,0 +1,181 @@
+requires "abstract-semantics.k"
+requires "verification.k"
+
+module EXECUTE-EXECUTOR-VALID-SIGCHECK-PASS-OWNERCHECK-PASS-SUCCESS-SPEC
+  imports ETHEREUM-SIMULATION
+  imports ABSTRACT-SEMANTICS
+  imports VERIFICATION
+
+  // execute-executor-valid-sigcheck-pass-ownercheck-pass-success 
+  rule
+    <k> (#execute => #halt) ~> _ </k>
+    <exit-code> 1 </exit-code>
+    <mode> NORMAL </mode>
+    <schedule> BYZANTIUM </schedule>
+    <analysis> .Map </analysis> // not part of evm
+    <ethereum>
+      <evm>
+        <output> _ => #encodeArgs(#address(RECOVERED)) </output>
+        <statusCode> _ => EVMC_SUCCESS </statusCode>
+        <callStack> _ </callStack>
+        <interimStates> _ </interimStates>
+        <touchedAccounts> _ => _ </touchedAccounts>
+        <callState>
+          <program> #asMapOpCodes(#dasmOpCodes(#parseByteStack("0x608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806313c01cb914610059578063aa5df9e214610195578063affed0e014610210575b005b34801561006557600080fd5b50610153600480360361010081101561007d57600080fd5b81019080803560ff1690602001909291908035906020019092919080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190803590602001906401000000008111156100e557600080fd5b8201836020820111156100f757600080fd5b8035906020019184600183028401116401000000008311171561011957600080fd5b9091929391929390803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061023b565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156101a157600080fd5b506101ce600480360360208110156101b857600080fd5b81019080803590602001909291905050506105d9565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561021c57600080fd5b50610225610617565b6040518082815260200191505060405180910390f35b60003373ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff1614806102a35750600073ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff16145b15156102ae57600080fd5b60007f3ee892349ae4bbe61dce18f95115b5dc02daf49204cc602458cd4c1f540d56d76001028888888860405180838380828437808301925050509250505060405180910390206000548888604051602001808881526020018773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018681526020018581526020018481526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001828152602001975050505050505050604051602081830303815290604052805190602001209050600060197f01000000000000000000000000000000000000000000000000000000000000000260017f0100000000000000000000000000000000000000000000000000000000000000026003548460405160200180857effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19168152600101847effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19168152600101838152602001828152602001945050505050604051602081830303815290604052805190602001209050600080905060006001838f8f8f60405160008152602001604052604051808581526020018460ff1660ff1681526020018381526020018281526020019450505050506020604051602081039080840390855afa15801561051b573d6000803e3d6000fd5b5050506020604051035190508173ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161180156105ab5750600160008273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff165b15156105b657600080fd5b809150600160005401600081905550809450505050509998505050505050505050565b6002818154811015156105e857fe5b906000526020600020016000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000548156fea165627a7a723058208680509570538e18bc78bc4ac14f66a1f56388a897e45d76683af069177ff3170029"), BYZANTIUM)) </program>
+          <programBytes> #parseByteStack("0x608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806313c01cb914610059578063aa5df9e214610195578063affed0e014610210575b005b34801561006557600080fd5b50610153600480360361010081101561007d57600080fd5b81019080803560ff1690602001909291908035906020019092919080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190803590602001906401000000008111156100e557600080fd5b8201836020820111156100f757600080fd5b8035906020019184600183028401116401000000008311171561011957600080fd5b9091929391929390803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061023b565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156101a157600080fd5b506101ce600480360360208110156101b857600080fd5b81019080803590602001909291905050506105d9565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561021c57600080fd5b50610225610617565b6040518082815260200191505060405180910390f35b60003373ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff1614806102a35750600073ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff16145b15156102ae57600080fd5b60007f3ee892349ae4bbe61dce18f95115b5dc02daf49204cc602458cd4c1f540d56d76001028888888860405180838380828437808301925050509250505060405180910390206000548888604051602001808881526020018773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018681526020018581526020018481526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001828152602001975050505050505050604051602081830303815290604052805190602001209050600060197f01000000000000000000000000000000000000000000000000000000000000000260017f0100000000000000000000000000000000000000000000000000000000000000026003548460405160200180857effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19168152600101847effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19168152600101838152602001828152602001945050505050604051602081830303815290604052805190602001209050600080905060006001838f8f8f60405160008152602001604052604051808581526020018460ff1660ff1681526020018381526020018281526020019450505050506020604051602081039080840390855afa15801561051b573d6000803e3d6000fd5b5050506020604051035190508173ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161180156105ab5750600160008273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff165b15156105b657600080fd5b809150600160005401600081905550809450505050509998505050505050505050565b6002818154811015156105e857fe5b906000526020600020016000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000548156fea165627a7a723058208680509570538e18bc78bc4ac14f66a1f56388a897e45d76683af069177ff3170029") </programBytes>
+          <id> #CONTRACT_ID </id> // this
+          <caller> MSG_SENDER </caller> // msg.sender
+          <callData> #abiCallData("execute",
+#uint8(SIGV),
+#bytes32(SIGR),
+#bytes32(SIGS),
+#address(DESTINATION),
+#uint256(VALUE),
+#bytes(#buf(DATA_LEN, DATA)),
+#address(EXECUTOR),
+#uint256(GAS_LIMIT) ) </callData> // msg.data
+          <callValue> 0 </callValue> // msg.value
+          <wordStack> .WordStack => _ </wordStack>
+          <localMem> .Map => _ </localMem>
+          <pc> 0 => _ </pc>
+          <gas> #gas(INITGAS, 0, 0) => _ </gas>
+          <memoryUsed> 0 => _ </memoryUsed>
+          <previousGas> _ => _ </previousGas>
+          <static> false </static> // NOTE: non-static call
+          <callDepth> CD </callDepth>
+        </callState>
+        <substate>
+          <selfDestruct> _ </selfDestruct>
+          <log> _ </log>
+          <refund> _ => _ </refund>
+        </substate>
+        <gasPrice> _ </gasPrice>
+        <origin> _ </origin> // tx.origin
+        <previousHash> _ </previousHash>
+        <ommersHash> _ </ommersHash>
+        <coinbase> _ => _ </coinbase> // block.coinbase
+        <stateRoot> _ </stateRoot>
+        <transactionsRoot> _ </transactionsRoot>
+        <receiptsRoot> _ </receiptsRoot>
+        <logsBloom> _ </logsBloom>
+        <difficulty> _ </difficulty>
+        <number> BLOCK_NUM </number> // block.number
+        <gasLimit> _ </gasLimit>
+        <gasUsed> _ </gasUsed>
+        <timestamp> NOW </timestamp> // now = block.timestamp
+        <extraData> _ </extraData>
+        <mixHash> _ </mixHash>
+        <blockNonce> _ </blockNonce>
+        <ommerBlockHeaders> _ </ommerBlockHeaders>
+        <blockhash> BLOCK_HASHES </blockhash> // block.blockhash
+      </evm>
+      <network>
+        <activeAccounts> SetItem(#CONTRACT_ID) SetItem(#CALLEE_ID) SetItem(1) _:Set </activeAccounts>
+        <accounts>
+          <account>
+            <acctID> #CONTRACT_ID </acctID>
+            <balance> CONTRACT_BAL </balance>
+            <code> #parseByteStack("0x608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806313c01cb914610059578063aa5df9e214610195578063affed0e014610210575b005b34801561006557600080fd5b50610153600480360361010081101561007d57600080fd5b81019080803560ff1690602001909291908035906020019092919080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190803590602001906401000000008111156100e557600080fd5b8201836020820111156100f757600080fd5b8035906020019184600183028401116401000000008311171561011957600080fd5b9091929391929390803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061023b565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156101a157600080fd5b506101ce600480360360208110156101b857600080fd5b81019080803590602001909291905050506105d9565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561021c57600080fd5b50610225610617565b6040518082815260200191505060405180910390f35b60003373ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff1614806102a35750600073ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff16145b15156102ae57600080fd5b60007f3ee892349ae4bbe61dce18f95115b5dc02daf49204cc602458cd4c1f540d56d76001028888888860405180838380828437808301925050509250505060405180910390206000548888604051602001808881526020018773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018681526020018581526020018481526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001828152602001975050505050505050604051602081830303815290604052805190602001209050600060197f01000000000000000000000000000000000000000000000000000000000000000260017f0100000000000000000000000000000000000000000000000000000000000000026003548460405160200180857effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19168152600101847effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19168152600101838152602001828152602001945050505050604051602081830303815290604052805190602001209050600080905060006001838f8f8f60405160008152602001604052604051808581526020018460ff1660ff1681526020018381526020018281526020019450505050506020604051602081039080840390855afa15801561051b573d6000803e3d6000fd5b5050506020604051035190508173ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161180156105ab5750600160008273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff165b15156105b657600080fd5b809150600160005401600081905550809450505050509998505050505050505050565b6002818154811015156105e857fe5b906000526020600020016000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000548156fea165627a7a723058208680509570538e18bc78bc4ac14f66a1f56388a897e45d76683af069177ff3170029") </code>
+            <storage>
+S0 => S1
+            </storage>
+            <origStorage>
+_
+            </origStorage>
+            <nonce> _ </nonce>
+          </account>
+
+          <account>
+            <acctID> #CALLEE_ID </acctID>
+            <balance> CALLEE_BAL </balance>
+            <code> _ </code>
+            <storage>
+                _
+            </storage>
+            <origStorage>
+                _
+            </origStorage>
+            <nonce> _ </nonce>
+          </account>
+
+          <account>
+            // precompiled account for ECCREC
+            <acctID> 1 </acctID>
+            <balance> 0 </balance>
+            <code> .WordStack </code>
+            <storage> .Map </storage>
+            <origStorage> .Map </origStorage>
+            <nonce> 0 </nonce>
+          </account>
+
+
+          ...
+        </accounts>
+        <txOrder> _ </txOrder>
+        <txPending> _ </txPending>
+        <messages> _ </messages>
+      </network>
+    </ethereum>
+    requires
+     #rangeAddress(#CONTRACT_ID)
+     andBool #rangeAddress(#CALLEE_ID)
+     andBool #rangeUInt(256, NOW)
+     andBool #rangeUInt(128, BLOCK_NUM) // Solidity
+
+     // Account address normality
+     andBool #CONTRACT_ID  >Int 0 andBool (notBool #CONTRACT_ID  in #precompiledAccounts(BYZANTIUM))
+     andBool #CALLEE_ID  >Int 0 andBool (notBool #CALLEE_ID  in #precompiledAccounts(BYZANTIUM))
+
+andBool #rangeUInt(256, CONTRACT_BAL)
+andBool #range(0 <= CD < 1024)
+andBool #rangeAddress(MSG_SENDER)
+andBool #rangeAddress(DESTINATION)
+andBool #rangeUInt(256, VALUE)
+andBool #rangeUInt(256, DATA_LEN)
+andBool DATA_LEN <Int 2 ^Int 16
+andBool #rangeAddress(EXECUTOR)
+andBool #rangeUInt(256, GAS_LIMIT)
+
+andBool select(S0, #hashedLocation("Solidity", 3, .IntList)) ==Int DOMAIN_SEPARATOR
+andBool #rangeBytes(32, DOMAIN_SEPARATOR)
+
+andBool select(S0, #hashedLocation("Solidity", 0, .IntList)) ==Int NONCE_0
+andBool #rangeUInt(256, NONCE_0)
+
+andBool #rangeUInt(8, SIGV)
+andBool #rangeBytes(32, SIGR)
+andBool #rangeBytes(32, SIGS)
+andBool (EXECUTOR ==Int MSG_SENDER orBool EXECUTOR ==Int 0)
+andBool TX_INPUT_HASH ==Int keccak(#encodeArgs(
+#bytes32(#parseHexWord("0x3ee892349ae4bbe61dce18f95115b5dc02daf49204cc602458cd4c1f540d56d7")),
+#address(DESTINATION),
+#uint256(VALUE),
+#bytes32(keccak(#buf(DATA_LEN,DATA))),
+#uint256(NONCE_0),
+#address(EXECUTOR),
+#uint256(GAS_LIMIT)
+))
+andBool TX_TOTAL_HASH ==Int keccak(25 : 1 :
+#encodeArgs(
+#bytes32(DOMAIN_SEPARATOR),
+#bytes32(TX_INPUT_HASH)
+))
+andBool ECREC_DATA ==K #encodeArgs( #bytes32(TX_TOTAL_HASH), #uint8(SIGV), #bytes32(SIGR), #bytes32(SIGS) )
+andBool RECOVERED ==Int #symEcrec( ECREC_DATA )
+andBool notBool #ecrecEmpty( ECREC_DATA )
+andBool #rangeAddress(RECOVERED)
+andBool IS_OWNER ==Int select(S0, #hashedLocation("Solidity", 1, RECOVERED))
+andBool #rangeUInt(8, IS_OWNER)
+andBool IS_OWNER =/=Int 0
+andBool NONCE_0 ==Int select(S0, #hashedLocation("Solidity", 0, .IntList))
+andBool NONCE_0 <Int 2 ^Int 256 -Int 1
+andBool NONCE_0 >=Int 0
+    ensures true
+andBool S0 ==IMap S1 except (SetItem(#hashedLocation("Solidity", 0, .IntList)) .Set)
+andBool NONCE_1 ==Int select(S1, #hashedLocation("Solidity", 0, .IntList))
+andBool NONCE_1 ==Int NONCE_0 +Int 1
+
+
+
+endmodule
+
