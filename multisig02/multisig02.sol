@@ -1,6 +1,6 @@
 pragma solidity 0.5.0;
 
-contract multisig01 {
+contract multisig02 {
 
     bytes32 constant EIP712DOMAINTYPE_HASH = 0xd87cd6ef79d4e2b95e15ce8abf732db51ec771f1ca2edccf22a46c729ac56472;
     bytes32 constant NAME_HASH = 0xb7a0bfa1b79f2443f4d73ebb9259cddbcd510b18be6fc4da7d1aa7b1786e73e6;
@@ -21,7 +21,7 @@ contract multisig01 {
         bytes32 totalHash = keccak256(abi.encodePacked(byte(0x19), byte(0x01), DOMAIN_SEPARATOR, txInputHash));
 
         address lastAdd = address(0);
-        for (uint i = 0; i < 1; i++) {
+        for (uint i = 0; i < 2; i++) {
             address recovered = ecrecover(totalHash, sigV[i], sigR[i], sigS[i]);
             require(recovered > lastAdd && isOwner[recovered]);
             lastAdd = recovered;
