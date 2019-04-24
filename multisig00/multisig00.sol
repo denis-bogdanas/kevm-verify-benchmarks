@@ -17,6 +17,16 @@ contract multisig00 {
     function execute(uint8[3] memory sigV, bytes32[3] memory  sigR, bytes32[3] memory sigS, address destination, uint value, bytes memory data, address executor, uint gasLimit) public returns(uint) {
         require(executor == msg.sender || executor == address(0));
 
+        bytes32 txInputHash = keccak256(abi.encode(TXTYPE_HASH, destination, value, keccak256(data), nonce, executor, gasLimit));
+        bytes32 totalHash = keccak256(abi.encodePacked(byte(0x19), byte(0x01), DOMAIN_SEPARATOR, txInputHash));
+
+        address lastAdd = address(0);
+        address recovered = ecrecover(totalHash, sigV[0], sigR[0], sigS[0]);
+        require(recovered > lastAdd && isOwner[recovered]);
+        lastAdd = recovered;
+
+        nonce = nonce + 1;
+
         return 5;
     }
 }
