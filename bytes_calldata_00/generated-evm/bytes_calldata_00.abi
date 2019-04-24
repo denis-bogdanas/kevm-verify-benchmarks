@@ -1,1 +1,0 @@
-[{"constant":true,"inputs":[{"name":"x","type":"bytes"}],"name":"get5","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"pure","type":"function"}]
