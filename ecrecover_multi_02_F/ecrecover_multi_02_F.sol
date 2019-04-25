@@ -1,5 +1,6 @@
 pragma solidity 0.5.0;
 
+//get-failure-1 does not terminate
 contract ecrecover_multi_02_F {
 
     uint constant THRESHOLD = 3;
