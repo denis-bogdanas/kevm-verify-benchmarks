@@ -1,6 +1,6 @@
 pragma solidity 0.5.0;
 
-//get-failure-1 does not terminate
+//passes both get-failure-1 and get-success
 contract ecrecover_multi_02_F_data_k2_noarr {
 
     uint constant THRESHOLD = 2;
