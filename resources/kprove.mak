@@ -29,7 +29,7 @@ KPROVE_OPTS+=$(EXT_KPROVE_OPTS)
 # Define variable DEBUG to enable debug options below
 #DEBUG=true
 ifdef DEBUG
-KPROVE_OPTS+=--debug-z3-queries --log-rules
+KPROVE_OPTS+=--debug-z3-queries --log-rules --log  --restore-original-names
 endif
 
 #
@@ -55,7 +55,7 @@ K_BIN:=$(abspath $(K_REPO_DIR)/k-distribution/target/release/k/bin)
 KPROVE:=$(K_BIN)/kprove -v --debug -d $(KEVM_REPO_DIR)/.build/java -m VERIFICATION --z3-impl-timeout 500 \
         --deterministic-functions --no-exc-wrap \
         --cache-func-optimized --no-alpha-renaming --format-failures --boundary-cells k,pc \
-        --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,\#pc,\#result \
+        --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,\#pc,\#result,#target \
         $(KPROVE_OPTS)
 
 SPEC_FILES:=$(patsubst %,$(SPECS_DIR)/%-spec.k,$(SPEC_NAMES))
