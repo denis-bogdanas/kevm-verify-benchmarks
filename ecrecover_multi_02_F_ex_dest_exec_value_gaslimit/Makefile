@@ -1,3 +1,3 @@
-SPEC_NAMES:=get-success
+SPEC_NAMES:=get-failure-1
 
 include ../resources/kprove.mak
