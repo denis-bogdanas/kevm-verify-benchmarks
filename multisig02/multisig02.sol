@@ -21,7 +21,7 @@ contract multisig02 {
         bytes32 totalHash = keccak256(abi.encodePacked(byte(0x19), byte(0x01), DOMAIN_SEPARATOR, txInputHash));
 
         address lastAdd = address(0);
-        for (uint i = 0; i < 2; i++) {
+        for (uint i = 0; i < THRESHOLD; i++) {
             address recovered = ecrecover(totalHash, sigV[i], sigR[i], sigS[i]);
             require(recovered > lastAdd && isOwner[recovered]);
             lastAdd = recovered;
