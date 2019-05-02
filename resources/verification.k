@@ -405,16 +405,11 @@ rule #sigR(SIGS, I) => #asWord(#bufSeg(SIGS, 65 *Int I        , 32))
 rule #sigS(SIGS, I) => #asWord(#bufSeg(SIGS, 65 *Int I +Int 32, 32))
 rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
 
-
-    syntax Int ::= "#GAS_EXEC_PARAM"   [function]
-    rule 0 <=Int #GAS_EXEC_PARAM               => true
-    rule         #GAS_EXEC_PARAM   <Int pow256 => true
-
  rule <k> #exec[CALL] => . ... </k>
       <wordStack> GASCAP : ACCTTO : VALUE : ARGSTART : ARGWIDTH : RETSTART : 0 : WS => 1 : WS </wordStack>
       <id> #CONTRACT_ID </id>
   requires
-        ACCTTO ==K #CALLEE_ID
+        ACCTTO ==Int #CALLEE_ID
  [trusted]
 
 
