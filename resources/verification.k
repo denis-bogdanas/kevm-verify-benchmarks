@@ -406,10 +406,10 @@ rule #sigS(SIGS, I) => #asWord(#bufSeg(SIGS, 65 *Int I +Int 32, 32))
 rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
 
  rule <k> #exec[CALL] => . ... </k>
-      <wordStack> GASCAP : ACCTTO : VALUE : ARGSTART : ARGWIDTH : RETSTART : 0 : WS => 1 : WS </wordStack>
+      <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : RETSTART_CA : 0 : WS => 1 : WS </wordStack>
       <id> #CONTRACT_ID </id>
   requires
-        ACCTTO ==Int #CALLEE_ID
+        ACCTTO_CA ==Int #CALLEE_ID
  [trusted]
 
 
