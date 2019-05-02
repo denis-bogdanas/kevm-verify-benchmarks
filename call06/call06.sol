@@ -1,6 +1,6 @@
 pragma solidity 0.5.0;
 
-contract call05 {
+contract call06 {
 
     function execute(bool condition, address destination, uint value, bytes memory data, uint gasLimit) public returns(bool) {
         require(condition);
