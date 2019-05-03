@@ -29,6 +29,9 @@ contract multisig04 {
 
         nonce = nonce + 1;
 
+        bool success = false;
+        assembly { success := call(gasLimit, destination, value, add(data, 0x20), mload(data), 0, 0) }
+
         return 5;
     }
 }
