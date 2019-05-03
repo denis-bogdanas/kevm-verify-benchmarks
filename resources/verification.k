@@ -405,11 +405,16 @@ rule #sigR(SIGS, I) => #asWord(#bufSeg(SIGS, 65 *Int I        , 32))
 rule #sigS(SIGS, I) => #asWord(#bufSeg(SIGS, 65 *Int I +Int 32, 32))
 rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
 
+    syntax Bool ::= "#callInvoked" [function]
+
  rule <k> #exec[CALL] => . ... </k>
       <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : RETSTART_CA : 0 : WS => 1 : WS </wordStack>
       <id> #CONTRACT_ID </id>
   requires
         ACCTTO_CA ==Int #CALLEE_ID
+  ensures
+        #callInvoked
+
  [trusted]
 
 
