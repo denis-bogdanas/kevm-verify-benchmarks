@@ -409,21 +409,33 @@ rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
     syntax Bool ::= "#callSuccess" [function]
     syntax Bool ::= "#callFailure" [function]
 
+    syntax Int ::= "#GASCAP_CALLARG"   [function]
+    rule 0 <=Int #GASCAP_CALLARG               => true
+    rule         #GASCAP_CALLARG   <Int pow256 => true
+
+    syntax Int ::= "#VALUE_CALLARG"   [function]
+    rule 0 <=Int #VALUE_CALLARG               => true
+    rule         #VALUE_CALLARG   <Int pow256 => true
+
     rule <k> #exec[CALL] => . ... </k>
-      <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : RETSTART_CA : 0 : WS => 1 : WS </wordStack>
+      <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 1 : WS </wordStack>
       <id> #CONTRACT_ID </id>
     requires
         ACCTTO_CA ==Int #CALLEE_ID
+        andBool GASCAP_CA ==Int #GASCAP_CALLARG
+        andBool VALUE_CA ==Int #VALUE_CALLARG
         andBool #callSuccess
     ensures
         #callInvoked
     [trusted]
 
     rule <k> #exec[CALL] => . ... </k>
-       <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : RETSTART_CA : 0 : WS => 0 : WS </wordStack>
+       <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 0 : WS </wordStack>
        <id> #CONTRACT_ID </id>
     requires
          ACCTTO_CA ==Int #CALLEE_ID
+         andBool GASCAP_CA ==Int #GASCAP_CALLARG
+         andBool VALUE_CA ==Int #VALUE_CALLARG
          andBool #callFailure
     ensures
          #callInvoked
