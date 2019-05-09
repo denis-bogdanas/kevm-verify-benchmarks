@@ -7,6 +7,6 @@ contract call09 {
 
         bool success = false;
         assembly { success := call(gas, destination, 0, 0, 0, 0, 0) }
-        return success;
+        require(success);
     }
 }
