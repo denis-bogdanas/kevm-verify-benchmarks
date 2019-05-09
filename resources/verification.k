@@ -406,16 +406,27 @@ rule #sigS(SIGS, I) => #asWord(#bufSeg(SIGS, 65 *Int I +Int 32, 32))
 rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
 
     syntax Bool ::= "#callInvoked" [function]
+    syntax Bool ::= "#callSuccess" [function]
+    syntax Bool ::= "#callFailure" [function]
 
- rule <k> #exec[CALL] => . ... </k>
+    rule <k> #exec[CALL] => . ... </k>
       <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : RETSTART_CA : 0 : WS => 1 : WS </wordStack>
       <id> #CONTRACT_ID </id>
-  requires
+    requires
         ACCTTO_CA ==Int #CALLEE_ID
-  ensures
+        andBool #callSuccess
+    ensures
         #callInvoked
+    [trusted]
 
- [trusted]
-
+    rule <k> #exec[CALL] => . ... </k>
+       <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : RETSTART_CA : 0 : WS => 0 : WS </wordStack>
+       <id> #CONTRACT_ID </id>
+    requires
+         ACCTTO_CA ==Int #CALLEE_ID
+         andBool #callFailure
+    ensures
+         #callInvoked
+    [trusted]
 
 endmodule
