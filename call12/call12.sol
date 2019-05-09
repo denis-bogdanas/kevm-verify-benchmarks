@@ -2,7 +2,7 @@ pragma solidity 0.5.0;
 
 contract call12 {
 
-    function execute(bool condition, uint gasLimit, uint value, address destination) public returns(bool) {
+    function execute(bool condition, uint gasLimit, uint value, bytes memory data, address destination) public returns(bool) {
         require(condition);
 
         bool success = false;
