@@ -1,8 +1,8 @@
-pragma solidity 0.4.24;
+pragma solidity 0.5.0;
 
 contract bytes_calldata_02 {
 
-    function getLength(bytes x) pure external returns (uint) {
+    function getLength(bytes memory x) pure public returns (uint) {
         return x.length;
     }
 }
