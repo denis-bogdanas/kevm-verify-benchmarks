@@ -6,7 +6,7 @@ contract call12 {
         require(condition);
 
         bool success = false;
-        assembly { success := call(gasLimit, destination, value, 0, 0, 0, 0) }
+        assembly { success := call(gasLimit, destination, value, add(data, 0x20), mload(data), 0, 0) }
         require(success);
     }
 }
