@@ -5,6 +5,6 @@
 #SPEC_NAMES:=execute-executor-valid-sigcheck-pass-ownercheck-fail-revert
 #SPEC_NAMES:=execute-executor-valid-sigcheck-pass-ownercheck-pass-success
 #SPEC_NAMES:=execute-executor-valid-sigcheck-fail-revert-0
-SPEC_NAMES:=execute-executor-valid-sigcheck-pass-ownercheck-pass-success-call-1
+SPEC_NAMES:=execute-executor-valid-sigcheck-pass-ownercheck-pass-success-call-0
 
 include ../resources/kprove.mak
