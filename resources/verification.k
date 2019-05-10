@@ -417,18 +417,17 @@ rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
     rule 0 <=Int #VALUE_CALLARG               => true
     rule         #VALUE_CALLARG   <Int pow256 => true
 
-    syntax Int ::= "#DATA_LEN_CALLARG"   [function]
-    rule 0 <=Int #DATA_LEN_CALLARG               => true
-    rule         #DATA_LEN_CALLARG   <Int pow256 => true
+    syntax WordStack ::= "#DATABUF_CALLARG"   [function]
 
     rule <k> #exec[CALL] => . ... </k>
       <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 1 : WS </wordStack>
       <id> #CONTRACT_ID </id>
+      <localMem> LM </localMem>
     requires
         ACCTTO_CA ==Int #CALLEE_ID
         andBool GASCAP_CA ==Int #GASCAP_CALLARG
         andBool VALUE_CA ==Int #VALUE_CALLARG
-        andBool ARGWIDTH_CA ==Int #DATA_LEN_CALLARG
+        andBool selectRange(LM, ARGSTART_CA, ARGWIDTH_CA) ==K #DATABUF_CALLARG
         andBool #callSuccess
     ensures
         #callInvoked
@@ -437,11 +436,12 @@ rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
     rule <k> #exec[CALL] => . ... </k>
        <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 0 : WS </wordStack>
        <id> #CONTRACT_ID </id>
+       <localMem> LM </localMem>
     requires
          ACCTTO_CA ==Int #CALLEE_ID
          andBool GASCAP_CA ==Int #GASCAP_CALLARG
          andBool VALUE_CA ==Int #VALUE_CALLARG
-         andBool ARGWIDTH_CA ==Int #DATA_LEN_CALLARG
+         andBool selectRange(LM, ARGSTART_CA, ARGWIDTH_CA) ==K #DATABUF_CALLARG
          andBool #callFailure
     ensures
          #callInvoked
