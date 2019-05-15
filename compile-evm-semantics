@@ -1,0 +1,6 @@
+CURPATH=`pwd`
+cd $CURPATH/.build/evm-semantics
+make clean
+make tangle-deps 
+make defn 
+$CURPATH/.build/k/k-distribution/target/release/k/bin/kompile -v --debug --backend java -I .build/java -d .build/java --main-module ETHEREUM-SIMULATION --syntax-module ETHEREUM-SIMULATION .build/java/driver.k
