@@ -42,23 +42,6 @@ module VERIFICATION
     rule 0 <=Int #gas(_, _, _)             => true
     rule         #gas(_, _, _) <Int pow256 => true
 
-
-  // ########################
-  // Account Map
-  // ########################
-
-    syntax Int ::= "#CONTRACT_ID"   [function]
-
-    rule 0 <=Int #CONTRACT_ID               => true
-    rule         #CONTRACT_ID   <Int pow160 => true
-    rule         #CONTRACT_ID   <Int pow256 => true
-
-    syntax Int ::= "#CALLEE_ID"   [function]
-
-    rule 0 <=Int #CALLEE_ID               => true
-    rule         #CALLEE_ID   <Int pow160 => true
-    rule         #CALLEE_ID   <Int pow256 => true
-
   // ########################
   // Memory Reasoning
   // ########################
@@ -406,6 +389,24 @@ rule #sigS(SIGS, I) => #asWord(#bufSeg(SIGS, 65 *Int I +Int 32, 32))
 rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
 
 
+  // ########################
+  // Account Map
+  // ########################
+
+    syntax Int ::= "#CONTRACT_ID"   [function]
+
+    rule 0 <=Int #CONTRACT_ID               => true
+    rule         #CONTRACT_ID   <Int pow160 => true
+    rule         #CONTRACT_ID   <Int pow256 => true
+
+    syntax Int ::= "#CALLEE_ID"   [function]
+
+    rule 0 <=Int #CALLEE_ID               => true
+    rule         #CALLEE_ID   <Int pow160 => true
+    rule         #CALLEE_ID   <Int pow256 => true
+
+
+    syntax Bool ::= "#callInvoked" [function]
     syntax Bool ::= "#callSuccess" [function]
     syntax Bool ::= "#callFailure" [function]
 
@@ -418,26 +419,6 @@ rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
     rule         #VALUE_CALLARG   <Int pow256 => true
 
     syntax WordStack ::= "#DATABUF_CALLARG"   [function]
-
-    syntax Bool ::= "#callInvokedOnce" [function]
-    syntax Bool ::= "#callInvokedTwice" [function]
-
-    rule <k> #exec[CALL] => . ... </k>
-      <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 1 : WS </wordStack>
-      <id> #CONTRACT_ID </id>
-    ensures
-        #callInvokedOnce
-    [trusted]
-
-    rule <k> #exec[CALL] => . ... </k>
-      <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 1 : WS </wordStack>
-      <id> #CONTRACT_ID </id>
-    requires
-        #callInvokedOnce
-    ensures
-        #callInvokedTwice
-    [trusted]
-
 
 
 

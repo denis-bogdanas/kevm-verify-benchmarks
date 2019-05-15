@@ -42,23 +42,6 @@ module VERIFICATION
     rule 0 <=Int #gas(_, _, _)             => true
     rule         #gas(_, _, _) <Int pow256 => true
 
-
-  // ########################
-  // Account Map
-  // ########################
-
-    syntax Int ::= "#CONTRACT_ID"   [function]
-
-    rule 0 <=Int #CONTRACT_ID               => true
-    rule         #CONTRACT_ID   <Int pow160 => true
-    rule         #CONTRACT_ID   <Int pow256 => true
-
-    syntax Int ::= "#CALLEE_ID"   [function]
-
-    rule 0 <=Int #CALLEE_ID               => true
-    rule         #CALLEE_ID   <Int pow160 => true
-    rule         #CALLEE_ID   <Int pow256 => true
-
   // ########################
   // Memory Reasoning
   // ########################
@@ -404,6 +387,24 @@ rule #ecrecData(SIGS, I, DATA_HASH) => #encodeArgs(#bytes32(DATA_HASH), #uint8(#
 rule #sigR(SIGS, I) => #asWord(#bufSeg(SIGS, 65 *Int I        , 32))
 rule #sigS(SIGS, I) => #asWord(#bufSeg(SIGS, 65 *Int I +Int 32, 32))
 rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
+
+
+  // ########################
+  // Account Map
+  // ########################
+
+    syntax Int ::= "#CONTRACT_ID"   [function]
+
+    rule 0 <=Int #CONTRACT_ID               => true
+    rule         #CONTRACT_ID   <Int pow160 => true
+    rule         #CONTRACT_ID   <Int pow256 => true
+
+    syntax Int ::= "#CALLEE_ID"   [function]
+
+    rule 0 <=Int #CALLEE_ID               => true
+    rule         #CALLEE_ID   <Int pow160 => true
+    rule         #CALLEE_ID   <Int pow256 => true
+
 
     syntax Bool ::= "#callInvoked" [function]
     syntax Bool ::= "#callSuccess" [function]
