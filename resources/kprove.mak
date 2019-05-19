@@ -52,9 +52,9 @@ KEVM_REPO_DIR:=$(abspath $(BUILD_DIR)/evm-semantics)
 
 K_BIN:=$(abspath $(K_REPO_DIR)/k-distribution/target/release/k/bin)
 
+#        --state-log --state-log-path $(SPECS_DIR)/log --state-log-events OPEN,REACHINIT,REACHTARGET,REACHPROVED,EXECINIT,SEARCHINIT,NODE,RULE,SRULE,RULEATTEMPT,SRULEATTEMPT,CHECKINGCONSTRAINT,IMPLICATION,Z3QUERY,Z3RESULT,CLOSE \
 # For debug add: --log-rules --debug-z3-queries
 KPROVE:=$(K_BIN)/kprove -v --debug -d $(KEVM_REPO_DIR)/.build/java -m VERIFICATION --z3-impl-timeout 500 \
-#        --state-log --state-log-path $(SPECS_DIR)/log --state-log-events OPEN,REACHINIT,REACHTARGET,REACHPROVED,EXECINIT,SEARCHINIT,NODE,RULE,SRULE,RULEATTEMPT,SRULEATTEMPT,CHECKINGCONSTRAINT,IMPLICATION,Z3QUERY,Z3RESULT,CLOSE \
         --deterministic-functions --no-exc-wrap \
         --cache-func-optimized --no-alpha-renaming --format-failures --boundary-cells k,pc \
         --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,\#pc,\#result,\#target \

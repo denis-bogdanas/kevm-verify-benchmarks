@@ -405,31 +405,17 @@ rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
     rule         #CALLEE_ID   <Int pow160 => true
     rule         #CALLEE_ID   <Int pow256 => true
 
-
-    syntax Bool ::= "#callInvoked" [function]
     syntax Bool ::= "#callSuccess" [function]
     syntax Bool ::= "#callFailure" [function]
 
-    syntax Int ::= "#GASCAP_CALLARG"   [function]
-    rule 0 <=Int #GASCAP_CALLARG               => true
-    rule         #GASCAP_CALLARG   <Int pow256 => true
-
-    syntax Int ::= "#VALUE_CALLARG"   [function]
-    rule 0 <=Int #VALUE_CALLARG               => true
-    rule         #VALUE_CALLARG   <Int pow256 => true
-
-    syntax WordStack ::= "#DATABUF_CALLARG"   [function]
-
     rule <k> #exec[CALL] => . ... </k>
          <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 1 : WS </wordStack>
-   //      <callCount> N => N +Int 1 </callCount>
     requires
         #callSuccess
     [trusted]
 
     rule <k> #exec[CALL] => . ... </k>
          <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 0 : WS </wordStack>
-    //     <callCount> N => N +Int 1 </callCount>
     requires
          #callFailure
     [trusted]
