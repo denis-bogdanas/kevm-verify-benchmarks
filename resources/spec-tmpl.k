@@ -27,7 +27,6 @@
           <previousGas> _ => _ </previousGas>
           <static> false </static> // NOTE: non-static call
           <callDepth> {CALLDEPTH} </callDepth>
-          <callCount> {CALLCOUNT} </callCount>
         </callState>
         <substate>
           <selfDestruct> _ </selfDestruct>

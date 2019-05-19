@@ -1,0 +1,59 @@
+#!/bin/bash
+
+set -e
+
+if [ "$#" -ne 1 ]; then
+    echo "Illegal number of parameters"
+    exit 1
+fi
+
+TARGET=${1%/}
+
+KVB=`pwd`
+KVBB=$KVB/$TARGET
+
+if [ ! -d "$KVBB" ]; then
+	echo "Directory does not exist: $KVBB"
+	exit 1
+fi
+
+BNAME=kevm-$TARGET-`date +"%Y-%m-%d"`
+REPO="git@github.com:suhabe/$BNAME.git"
+
+echo "Isolated directory: $BNAME"
+echo "Repo: $REPO"
+
+cd ..
+rm -rf $BNAME
+mkdir $BNAME
+mkdir $BNAME/.build
+cp $KVB/.build/.k.rev $BNAME/.build
+cp $KVB/.build/.kevm.rev $BNAME/.build
+cp -r $KVB/resources $BNAME
+cp -r $KVB/$TARGET $BNAME
+rm -rf $BNAME/$TARGET/generated*
+
+cd $BNAME
+
+echo "Use the following commands to run this benchmark:" > README.md
+echo >> README.md
+echo >> README.md
+echo "\`\`\`" >> README.md
+echo "git clone $REPO" >> README.md
+echo "cd $BNAME/$TARGET" >> README.md
+echo "make" >> README.md
+echo "\`\`\`" >> README.md
+
+git init
+git add .
+cd .build && git submodule add https://github.com/ehildenb/pandoc-tangle 
+git commit -a -m "first commit"
+git remote add origin $REPO
+
+
+
+
+echo "Final steps:"
+echo "Create Github repository named: $BNAME"
+echo "Then, run the following command:"
+echo "cd ../$BNAME; git push -u origin master"

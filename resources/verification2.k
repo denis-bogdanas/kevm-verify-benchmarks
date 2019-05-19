@@ -421,18 +421,31 @@ rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
     syntax WordStack ::= "#DATABUF_CALLARG"   [function]
 
     rule <k> #exec[CALL] => . ... </k>
-         <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 1 : WS </wordStack>
-   //      <callCount> N => N +Int 1 </callCount>
+      <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 1 : WS </wordStack>
+      <id> #CONTRACT_ID </id>
+      <localMem> LM </localMem>
     requires
-        #callSuccess
+        ACCTTO_CA ==Int #CALLEE_ID
+        andBool GASCAP_CA ==Int #GASCAP_CALLARG
+        andBool VALUE_CA ==Int #VALUE_CALLARG
+        andBool selectRange(LM, ARGSTART_CA, ARGWIDTH_CA) ==K #DATABUF_CALLARG
+        andBool #callSuccess
+    ensures
+        #callInvoked
     [trusted]
 
     rule <k> #exec[CALL] => . ... </k>
-         <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 0 : WS </wordStack>
-    //     <callCount> N => N +Int 1 </callCount>
+       <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 0 : WS </wordStack>
+       <id> #CONTRACT_ID </id>
+       <localMem> LM </localMem>
     requires
-         #callFailure
+         ACCTTO_CA ==Int #CALLEE_ID
+         andBool GASCAP_CA ==Int #GASCAP_CALLARG
+         andBool VALUE_CA ==Int #VALUE_CALLARG
+         andBool selectRange(LM, ARGSTART_CA, ARGWIDTH_CA) ==K #DATABUF_CALLARG
+         andBool #callFailure
+    ensures
+         #callInvoked
     [trusted]
-
 
 endmodule
