@@ -13,7 +13,10 @@ $(error SPEC_NAMES is not set)
 endif
 
 SPEC_INI?=./spec.ini
-LOCAL_LEMMAS?=../resources/verification.k ../resources/abstract-semantics.k  \
+VERIFICATION_NUM?=2
+
+LOCAL_LEMMAS?=../resources/verification$(VERIFICATION_NUM).k \
+        ../resources/abstract-semantics.k  \
 		../resources/abstract-semantics-segmented-gas.k \
 		../resources/evm-symbolic.k \
 		../resources/evm-data-map-symbolic.k \
@@ -111,6 +114,7 @@ $(SPECS_DIR): $(LOCAL_LEMMAS)
 	mkdir -p $@
 ifneq ($(strip $(LOCAL_LEMMAS)),)
 	cp $(LOCAL_LEMMAS) $@
+	mv $@/verification$(VERIFICATION_NUM).k $@/verification.k
 endif
 	bash $(RESOURCES)/compile5
 
