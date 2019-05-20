@@ -405,36 +405,4 @@ rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
     rule         #CALLEE_ID   <Int pow160 => true
     rule         #CALLEE_ID   <Int pow256 => true
 
-
-    syntax Bool ::= "#callSuccess" [function]
-    syntax Bool ::= "#callFailure" [function]
-
-    rule <k> #exec[CALL] => . ... </k>
-         <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 1 : WS </wordStack>
-         <pc> PCOUNT </pc>
-         <localMem> LM </localMem>
-         <callLog> ... (.List => ListItem( CALL GASCAP_CA ACCTTO_CA VALUE_CA ARGSTART_CA ARGWIDTH_CA 0 0 LM )) </callLog>
-    requires
-        #rangeUInt(256, GASCAP_CA)
-        andBool #rangeAddress(ACCTTO_CA)
-        andBool #rangeUInt(256, VALUE_CA)
-        andBool #rangeUInt(256, ARGSTART_CA)
-        andBool #rangeUInt(256, ARGWIDTH_CA)
-        andBool #callSuccess
-    [trusted]
-
-    rule <k> #exec[CALL] => . ... </k>
-         <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 0 : WS </wordStack>
-         <pc> PCOUNT </pc>
-         <localMem> LM </localMem>
-         <callLog> ... (.List => ListItem( CALL GASCAP_CA ACCTTO_CA VALUE_CA ARGSTART_CA ARGWIDTH_CA 0 0 LM )) </callLog>
-    requires
-        #rangeUInt(256, GASCAP_CA)
-        andBool #rangeAddress(ACCTTO_CA)
-        andBool #rangeUInt(256, VALUE_CA)
-        andBool #rangeUInt(256, ARGSTART_CA)
-        andBool #rangeUInt(256, ARGWIDTH_CA)
-        andBool #callFailure
-    [trusted]
-
 endmodule
