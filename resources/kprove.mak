@@ -48,7 +48,7 @@ K_VERSION   :=$(shell cat $(BUILD_DIR)/.k.rev)
 KEVM_VERSION:=$(shell cat $(BUILD_DIR)/.kevm.rev)
 
 K_REPO_DIR:=$(abspath $(BUILD_DIR)/k)
-KEVM_REPO_DIR:=$(abspath $(BUILD_DIR)/evm-semantics)
+KEVM_REPO_DIR?=$(abspath $(BUILD_DIR)/evm-semantics)
 
 K_BIN:=$(abspath $(K_REPO_DIR)/k-distribution/target/release/k/bin)
 

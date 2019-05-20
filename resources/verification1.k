@@ -411,13 +411,23 @@ rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
     rule <k> #exec[CALL] => . ... </k>
          <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 1 : WS </wordStack>
     requires
-        #callSuccess
+        #rangeUInt(256, GASCAP_CA)
+        andBool #rangeAddress(ACCTTO_CA)
+        andBool #rangeUInt(256, VALUE_CA)
+        andBool #rangeUInt(256, ARGSTART_CA)
+        andBool #rangeUInt(256, ARGWIDTH_CA)
+        andBool #callSuccess
     [trusted]
 
     rule <k> #exec[CALL] => . ... </k>
          <wordStack> GASCAP_CA : ACCTTO_CA : VALUE_CA : ARGSTART_CA : ARGWIDTH_CA : 0 : 0 : WS => 0 : WS </wordStack>
     requires
-         #callFailure
+        #rangeUInt(256, GASCAP_CA)
+        andBool #rangeAddress(ACCTTO_CA)
+        andBool #rangeUInt(256, VALUE_CA)
+        andBool #rangeUInt(256, ARGSTART_CA)
+        andBool #rangeUInt(256, ARGWIDTH_CA)
+        andBool #callFailure
     [trusted]
 
 
