@@ -42,7 +42,7 @@ module ABSTRACT-SEMANTICS
          <callLog> L (.List => ListItem ( size(L) PCOUNT CSO W0 W1    W2 W3 W4 W5 LM )) </callLog>
          <pc> PCOUNT </pc>
     requires
-        #callSuccess2 (size(L))
+        #callSuccess (size(L), W1)
     [trusted]
 
     rule <k> #exec [ CO:CallOp ] => . ... </k>
@@ -51,7 +51,7 @@ module ABSTRACT-SEMANTICS
          <callLog> L (.List => ListItem ( size(L) PCOUNT CO  W0 W1 W2 W3 W4 W5 W6 LM )) </callLog>
          <pc> PCOUNT </pc>
     requires
-        #callFailure2 (size(L))
+        #callFailure (size(L), W1)
     [trusted]
 
 

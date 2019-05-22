@@ -64,10 +64,6 @@ module EVM-SYMBOLIC     [symbolic]
                   | #callFailure ( Int , Int )  [function]  // pc, accountTo
  // ------------------------------------------------------------------------
 
-    syntax Bool ::=  #callSuccess2 ( Int )  [function]
-                   | #callFailure2 ( Int )  [function]
-
-
     syntax Int ::= #callResult ( Int , Int )  [function]  // pc, accountTo
  // ----------------------------------------------------------------------
 
