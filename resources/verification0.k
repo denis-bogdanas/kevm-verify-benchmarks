@@ -405,21 +405,4 @@ rule #sigV(SIGS, I) =>         #bufElm(SIGS, 65 *Int I +Int 64)
     rule         #CALLEE_ID   <Int pow160 => true
     rule         #CALLEE_ID   <Int pow256 => true
 
-    syntax CallLog    ::= CallSixOp Int Int     Int Int Int Int Map
-                        | CallOp    Int Int Int Int Int Int Int Map
- // -----------------------------------------------------------
-    rule <k> #exec [ CSO:CallSixOp ] => . ... </k>
-         <wordStack> W0 : W1 : W2 : W3 : W4 : W5 : WS      => WS </wordStack>
-         <localMem> LM </localMem>
-         <callLog> ... (.List => ListItem ( CSO W0 W1    W2 W3 W4 W5 LM )) </callLog>
-         <pc> PCOUNT </pc>
-    [trusted]
-
-    rule <k> #exec [ CO:CallOp ] => . ... </k>
-         <wordStack> W0 : W1 : W2 : W3 : W4 : W5 : W6 : WS => WS </wordStack>
-         <localMem> LM </localMem>
-         <callLog> ... (.List => ListItem ( CO  W0 W1 W2 W3 W4 W5 W6 LM )) </callLog>
-         <pc> PCOUNT </pc>
-    [trusted]
-
 endmodule

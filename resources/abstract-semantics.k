@@ -8,6 +8,7 @@ module ABSTRACT-SEMANTICS
   imports ECREC-SYMBOLIC
   imports EVM
 
+
   // ########################
   // Gas - in addition to ABSTRACT-SEMANTICS-COMMON
   // ########################
@@ -32,9 +33,32 @@ module ABSTRACT-SEMANTICS
 
 
   // ########################
+  // Summary split
+  // ########################
+
+    rule <k> #exec [ CSO:CallSixOp ] => . ... </k>
+         <wordStack> W0 : W1 : W2 : W3 : W4 : W5 : WS      => 1 : WS </wordStack>
+         <localMem> LM </localMem>
+         <callLog> L (.List => ListItem ( size(L) PCOUNT CSO W0 W1    W2 W3 W4 W5 LM )) </callLog>
+         <pc> PCOUNT </pc>
+    requires
+        #callSuccess2 (size(L))
+    [trusted]
+
+    rule <k> #exec [ CO:CallOp ] => . ... </k>
+         <wordStack> W0 : W1 : W2 : W3 : W4 : W5 : W6 : WS => 0 : WS </wordStack>
+         <localMem> LM </localMem>
+         <callLog> L (.List => ListItem ( size(L) PCOUNT CO  W0 W1 W2 W3 W4 W5 W6 LM )) </callLog>
+         <pc> PCOUNT </pc>
+    requires
+        #callFailure2 (size(L))
+    [trusted]
+
+
+  // ########################
   // EXTCODESIZE
   // ########################
 
-  rule <k> EXTCODESIZE ACCT => #extCodeSize(ACCT) ~> #push ... </k>  [trusted]
+    rule <k> EXTCODESIZE ACCT => #extCodeSize(ACCT) ~> #push ... </k>  [trusted]
 
 endmodule
