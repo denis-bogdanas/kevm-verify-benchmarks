@@ -7,7 +7,7 @@
          <callLog> L (.List => ListItem ( size(L) PCOUNT W0 W1 W2 W3 W4 W5 W6 LM )) </callLog>
          <pc> PCOUNT </pc>
     requires
-        PCOUNT in (SetItem(390))
+        PCOUNT in {CALL_LOG_PCSET}
         andBool #callSuccess (size(L), W1)
     [trusted]
 
@@ -18,7 +18,7 @@
          <callLog> L (.List => ListItem ( size(L) PCOUNT W0 W1 W2 W3 W4 W5 W6 LM )) </callLog>
          <pc> PCOUNT </pc>
     requires
-        PCOUNT in (SetItem(390))
+        PCOUNT in {CALL_LOG_PCSET}
         andBool #callFailure (size(L), W1)
     [trusted]
 
