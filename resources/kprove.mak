@@ -86,6 +86,12 @@ clean-deps:
 
 deps: $(K_REPO_DIR) $(KEVM_REPO_DIR) $(TANGLER)
 
+kevmc:
+	cd $(KEVM_REPO_DIR) \
+		&& rm -rf .build/java/* \
+		&& make java-defn \
+		&& $(K_BIN)/kompile -v --debug --backend java -I .build/java -d .build/java --main-module ETHEREUM-SIMULATION --syntax-module ETHEREUM-SIMULATION .build/java/driver.k
+
 $(K_REPO_DIR):
 	git clone $(K_REPO_URL) $(K_REPO_DIR)
 	cd $(K_REPO_DIR) \
