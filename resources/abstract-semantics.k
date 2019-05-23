@@ -31,35 +31,6 @@ module ABSTRACT-SEMANTICS
      [trusted]
 
 
-
-  // ########################
-  // Summary split
-  // ########################
-
-    syntax CallLog ::= Int Int Int Int Int Int Int Int Int Map
-
-    rule <k> #exec [ CALL ] => . ... </k>
-         <wordStack> W0 : W1 : W2 : W3 : W4 : W5 : W6 : WS => 1 : WS </wordStack>
-         <localMem> LM </localMem>
-         <callLog> L (.List => ListItem ( size(L) PCOUNT W0 W1 W2 W3 W4 W5 W6 LM )) </callLog>
-         <pc> PCOUNT </pc>
-    requires
-        PCOUNT ==Int 390
-        andBool #callSuccess (size(L), W1)
-    [trusted]
-
-
-    rule <k> #exec [ CALL ] => . ... </k>
-         <wordStack> W0 : W1 : W2 : W3 : W4 : W5 : W6 : WS => 0 : WS </wordStack>
-         <localMem> LM </localMem>
-         <callLog> L (.List => ListItem ( size(L) PCOUNT W0 W1 W2 W3 W4 W5 W6 LM )) </callLog>
-         <pc> PCOUNT </pc>
-    requires
-        PCOUNT ==Int 390
-        andBool #callFailure (size(L), W1)
-    [trusted]
-
-
   // ########################
   // EXTCODESIZE
   // ########################
