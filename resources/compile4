@@ -1,6 +1,12 @@
-OUT_DIR=generated-evm
+set -e
 
+OUT_DIR=generated
 
-rm -rf $OUT_DIR
-/opt/solc-0.4.24 --pretty-json --overwrite -o $OUT_DIR --bin --bin-runtime --abi --combined-json abi,asm,ast,bin,bin-runtime,clone-bin,compact-format,devdoc,hashes,interface,metadata,opcodes,srcmap,srcmap-runtime,userdoc $1
-mv $OUT_DIR/combined.json $OUT_DIR/$1.json
+SOL=`find . -name "*.sol"`
+
+/opt/solc-0.4.24 --overwrite -o $OUT_DIR --bin-runtime $SOL
+
+BIN_RUNTIME_FILE=${SOL/.sol/.bin-runtime}
+BIN_RUNTIME=0x`cat $OUT_DIR/$BIN_RUNTIME_FILE`
+
+sed -i "s/contract_code:.*/contract_code: \"$BIN_RUNTIME\"/g" spec.ini

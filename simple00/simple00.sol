@@ -6,3 +6,4 @@ contract simple00 {
         return 5;
     }
 }
+

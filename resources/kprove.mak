@@ -14,6 +14,7 @@ endif
 
 SPEC_INI?=./spec.ini
 VERIFICATION_NUM?=2
+COMPILE_SCRIPT?=compile5
 
 LOCAL_LEMMAS?=../resources/verification$(VERIFICATION_NUM).k \
         ../resources/abstract-semantics.k  \
@@ -123,7 +124,7 @@ ifneq ($(strip $(LOCAL_LEMMAS)),)
 	cp $(LOCAL_LEMMAS) $@
 	mv $@/verification$(VERIFICATION_NUM).k $@/verification.k
 endif
-	bash $(RESOURCES)/compile5
+	bash $(RESOURCES)/$(COMPILE_SCRIPT)
 
 ifneq ($(wildcard $(SPEC_INI:.ini=.md)),)
 $(SPEC_INI): $(SPEC_INI:.ini=.md) $(TANGLER)
