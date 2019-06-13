@@ -14,7 +14,7 @@ contract multisig12 {
     address[] public ownersArr;
     bytes32 DOMAIN_SEPARATOR;
 
-    function execute(uint8[3] memory sigV, bytes32[3] memory  sigR, bytes32[3] memory sigS, address destination, uint value, bytes memory data, address executor, uint gasLimit) public returns(uint) {
+    function execute(uint8[3] memory sigV, bytes32[3] memory  sigR, bytes32[3] memory sigS, address destination, uint value, bytes memory data, address executor, uint gasLimit) public {
         require(executor == msg.sender || executor == address(0));
 
         bytes32 txInputHash = keccak256(abi.encode(TXTYPE_HASH, destination, value, keccak256(data), nonce, executor, gasLimit));
@@ -31,7 +31,6 @@ contract multisig12 {
 
         bool success;
         assembly { success := call(gasLimit, destination, value, add(data, 0x20), mload(data), 0, 0) }
-
-        return 5;
+        require(success);
     }
 }
