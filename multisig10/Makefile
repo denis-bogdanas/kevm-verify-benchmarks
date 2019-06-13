@@ -4,8 +4,7 @@
 
 #SPEC_NAMES:=execute-executor-valid-sigcheck-pass-ownercheck-fail-revert
 #SPEC_NAMES:=execute-executor-valid-sigcheck-pass-ownercheck-pass-success
-SPEC_NAMES:=execute-executor-valid-sigcheck-pass-ownercheck-pass-success \
-execute-executor-valid-sigcheck-pass-ownercheck-fail-revert
+SPEC_NAMES:=execute-executor-valid-sigcheck-pass-ownercheck-pass-success
 
 KEVM_REPO_DIR:=/home/sbugrara/evm-semantics-call-log/
 VERIFICATION_NUM:=0
