@@ -58,15 +58,15 @@
         <accounts>
           <account>
             <acctID> #CONTRACT_ID </acctID>
-            <balance> {CONTRACT_BAL} </balance>
+            <balance> {BALANCE} </balance>
             <code> #parseByteStack({CONTRACT_CODE}) </code>
             <storage>
-{CONTRACT_STORAGE}
+{STORAGE}
             </storage>
             <origStorage>
-{CONTRACT_ORIGSTORAGE}
+{ORIGSTORAGE}
             </origStorage>
-            <nonce> {CONTRACT_NONCE} </nonce>
+            <nonce> {NONCE} </nonce>
           </account>
 
           <account>
