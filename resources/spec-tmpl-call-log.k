@@ -95,19 +95,6 @@
           </account>
 
           <account>
-            <acctID> #CALLEE_ID </acctID>
-            <balance> {CALLEE_BAL} </balance>
-            <code> {CALLEE_CODE} </code>
-            <storage>
-                {CALLEE_STORAGE}
-            </storage>
-            <origStorage>
-                {CALLEE_ORIGSTORAGE}
-            </origStorage>
-            <nonce> {CALLEE_NONCE} </nonce>
-          </account>
-
-          <account>
             // precompiled account for ECCREC
             <acctID> 1 </acctID>
             <balance> 0 </balance>
@@ -127,13 +114,11 @@
     </ethereum>
     requires
      #rangeAddress(#CONTRACT_ID)
-     andBool #rangeAddress(#CALLEE_ID)
      andBool #rangeUInt(256, NOW)
      andBool #rangeUInt(128, BLOCK_NUM) // Solidity
 
      // Account address normality
      andBool #CONTRACT_ID  >Int 0 andBool (notBool #CONTRACT_ID  in #precompiledAccounts(BYZANTIUM))
-     andBool #CALLEE_ID  >Int 0 andBool (notBool #CALLEE_ID  in #precompiledAccounts(BYZANTIUM))
 
 {REQUIRES}
     ensures true
