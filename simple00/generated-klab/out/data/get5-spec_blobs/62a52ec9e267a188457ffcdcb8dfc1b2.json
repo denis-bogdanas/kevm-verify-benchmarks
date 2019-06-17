@@ -1,1 +1,0 @@
-{"format":"KAST","version":1,"term":{"node":"KApply","label":"_==K_","variable":false,"arity":2,"args":[{"node":"KToken","sort":"Int","token":"10"},{"node":"KApply","label":"#symCmem","variable":false,"arity":1,"args":[{"node":"KVariable","name":"_2245","originalName":"MEM'"}]}]}}

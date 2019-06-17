@@ -1,1 +1,0 @@
-{"format":"KAST","version":1,"term":{"node":"KApply","label":"_==K_","variable":false,"arity":2,"args":[{"node":"KApply","label":"#ecrecEmpty","variable":false,"arity":1,"args":[{"node":"KVariable","name":"DATA","originalName":"DATA"}]},{"node":"KToken","sort":"Bool","token":"true"}]}}
