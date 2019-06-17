@@ -13,7 +13,7 @@ $(error SPEC_NAMES is not set)
 endif
 
 SPEC_INI?=./spec.ini
-VERIFICATION_NUM?=2
+VERIFICATION_NUM?=0
 COMPILE_SCRIPT?=compile5
 
 LOCAL_LEMMAS?=../resources/verification$(VERIFICATION_NUM).k \
