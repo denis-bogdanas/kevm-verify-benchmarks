@@ -54,6 +54,7 @@ KEVM_VERSION:=$(shell cat $(BUILD_DIR)/.kevm.rev)
 K_REPO_DIR:=$(abspath $(BUILD_DIR)/k)
 KEVM_REPO_DIR?=$(abspath $(BUILD_DIR)/evm-semantics)
 
+K_BIN:=$(abspath $(K_REPO_DIR)/k-distribution/target/release/k/bin)
 K_LIBS:=$(abspath $(K_REPO_DIR)/k-distribution/target/release/k/lib/java)
 
 #        --state-log --state-log-path $(SPECS_DIR)/log --state-log-events OPEN,REACHINIT,REACHTARGET,REACHPROVED,EXECINIT,SEARCHINIT,NODE,RULE,SRULE,RULEATTEMPT,SRULEATTEMPT,CHECKINGCONSTRAINT,IMPLICATION,Z3QUERY,Z3RESULT,CLOSE \
