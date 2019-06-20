@@ -1,10 +1,12 @@
 
-    syntax CallLog ::= Int Int Int Int Int Int Int Int Int Map
+    syntax CallLog ::= Int Int Int Int Int Int Int Int Int Map List List
 
     rule <k> #exec [ CALL ] => . ... </k>
          <wordStack> W0 : W1 : W2 : W3 : W4 : W5 : W6 : WS => 1 : WS </wordStack>
          <localMem> LM </localMem>
-         <callLog> L (.List => ListItem ( size(L) PCOUNT W0 W1 W2 W3 W4 W5 W6 LM )) </callLog>
+         <readLog> RD </readLog>
+         <writeLog> WR </writeLog>
+         <callLog> L (.List => ListItem ( size(L) PCOUNT W0 W1 W2 W3 W4 W5 W6 LM RD WR )) </callLog>
          <pc> PCOUNT </pc>
     requires
         PCOUNT in {CALL_LOG_PCSET}
@@ -15,7 +17,9 @@
     rule <k> #exec [ CALL ] => . ... </k>
          <wordStack> W0 : W1 : W2 : W3 : W4 : W5 : W6 : WS => 0 : WS </wordStack>
          <localMem> LM </localMem>
-         <callLog> L (.List => ListItem ( size(L) PCOUNT W0 W1 W2 W3 W4 W5 W6 LM )) </callLog>
+         <readLog> RD </readLog>
+         <writeLog> WR </writeLog>
+         <callLog> L (.List => ListItem ( size(L) PCOUNT W0 W1 W2 W3 W4 W5 W6 LM RD WR )) </callLog>
          <pc> PCOUNT </pc>
     requires
         PCOUNT in {CALL_LOG_PCSET}
@@ -57,6 +61,8 @@
           <log> {LOG} </log>
           <refund> {REFUND} </refund>
           <callLog> {CALLLOG} </callLog>
+          <readLog> {READLOG} </readLog>
+          <writeLog> {WRITELOG} </writeLog>
         </substate>
         <gasPrice> _ </gasPrice>
         <origin> _ </origin> // tx.origin
