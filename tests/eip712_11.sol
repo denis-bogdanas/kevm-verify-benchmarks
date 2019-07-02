@@ -19,7 +19,7 @@ contract eip712_11 {
         require(executor == msg.sender || executor == address(0));
 
         bytes32 txInputHash = keccak256(abi.encode(TXTYPE_HASH, destination, value, keccak256(data), nonce, executor, gasLimit));
-        bytes32 totalHash = keccak256(abi.encodePacked(byte(0x19), byte(0x01), DOMAIN_SEPARATOR, 0));
+        bytes32 totalHash = keccak256(abi.encodePacked(byte(0x19), byte(0x01), DOMAIN_SEPARATOR, byte(0x00)));
 
         address lastAdd = address(0);
         for (uint i = 0; i < THRESHOLD; i++) {

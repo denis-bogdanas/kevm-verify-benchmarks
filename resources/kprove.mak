@@ -28,7 +28,7 @@ TMPLS?=../resources/module-tmpl.k ../resources/spec-tmpl.k
 SPECS_DIR?=./generated
 
 # additional options to kprove command
-KPROVE_OPTS?=--smt-prelude ../resources/evm.smt2
+KPROVE_OPTS?=--smt-prelude generated/evm.smt2
 KPROVE_OPTS+=$(EXT_KPROVE_OPTS)
 
 # Define variable DEBUG to enable debug options below
@@ -126,6 +126,7 @@ $(SPECS_DIR): $(LOCAL_LEMMAS)
 	mkdir -p $@
 ifneq ($(strip $(LOCAL_LEMMAS)),)
 	cp $(LOCAL_LEMMAS) $@
+	cp ../resources/evm.smt2 $@
 	mv $@/verification$(VERIFICATION_NUM).k $@/verification.k
 endif
 	bash $(RESOURCES)/$(COMPILE_SCRIPT)

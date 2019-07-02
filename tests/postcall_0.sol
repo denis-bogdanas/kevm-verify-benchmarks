@@ -38,3 +38,4 @@ contract postcall_0 {
         x = 0;
     }
 }
+

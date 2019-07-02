@@ -1,6 +1,6 @@
 import os, subprocess, sys
 
-if len(sys.argv) != 3:
+if len(sys.argv) != 2:
     print('Must have 2 arguments!')
     print('Correct usage is "python test.py ." ')
     exit()
@@ -18,5 +18,5 @@ for f in os.listdir(test_dir):
 
     if file_ext == '.sol':
         cli_args = ['/opt/solc-0.5.0', f]
-        if subprocess.call(cli_args, shell=True):
+        if subprocess.call(cli_args):
             print('An error has occurred with command "%s"' % ' '.join(cli_args))

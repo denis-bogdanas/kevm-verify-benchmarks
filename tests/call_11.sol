@@ -31,8 +31,9 @@ contract call_11 {
         nonce = nonce + 1;
 
         bool success;
+        bool success2;
         assembly { success := call(gasLimit, destination, value, add(data, 0x20), mload(data), 0, 0) }
-        assembly { call(gasLimit, lastAdd, value, add(data, 0x20), mload(data), 0, 0) }
+        assembly { success2 := call(gasLimit, lastAdd, value, add(data, 0x20), mload(data), 0, 0) }
         require(success);
     }
 }

@@ -36,3 +36,4 @@ contract call_7 {
         require(success);
     }
 }
+
