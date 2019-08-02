@@ -130,6 +130,7 @@ ifneq ($(strip $(LOCAL_LEMMAS)),)
 	mv $@/verification$(VERIFICATION_NUM).k $@/verification.k
 endif
 	bash $(RESOURCES)/$(COMPILE_SCRIPT)
+	@echo export SEMANTICS=$(KEVM_REPO_DIR) > $@/.env
 
 ifneq ($(wildcard $(SPEC_INI:.ini=.md)),)
 $(SPEC_INI): $(SPEC_INI:.ini=.md) $(TANGLER)
@@ -150,3 +151,4 @@ test: $(addsuffix .test,$(SPEC_FILES))
 
 $(SPECS_DIR)/%-spec.k.test: $(SPECS_DIR)/%-spec.k
 	$(KPROVE) $<
+

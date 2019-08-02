@@ -5,15 +5,8 @@ rm -rf TEST-*
 
 KDIST=/home/sbugrara/k-distributed/
 (cd $KDIST/kworker; cargo build)
-for f in tests/* ; do
-    F=`basename $f`
-    FPATH=TEST-$F
-    echo $FPATH
-
-    mkdir $FPATH
-    cp $f $FPATH
-    cp $SPEC_DIR/spec.ini $FPATH
-    cp $SPEC_DIR/Makefile $FPATH
+for f in 0-* ; do
+    FPATH=`basename $f`
     (cd $FPATH; make deps clean split-proof-tests)
     for g in $FPATH/generated/*; do
         G=`basename $g`
@@ -21,7 +14,10 @@ for f in tests/* ; do
         then
             FULLPATH=`pwd`/$FPATH
             echo $FULLPATH $G
-            (cd $KDIST; kworker/target/debug/submit $FULLPATH $G k evm-semantics-call-log)
+            source $FULLPATH/generated/.env
+            SEMANTICS=`basename $SEMANTICS`
+            echo $SEMANTICS
+            (cd $KDIST; kworker/target/debug/submit $FULLPATH $G k $SEMANTICS)
         fi
     done
 done
