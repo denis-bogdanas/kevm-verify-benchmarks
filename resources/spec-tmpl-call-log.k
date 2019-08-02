@@ -89,15 +89,28 @@
         <accounts>
           <account>
             <acctID> #CONTRACT_ID </acctID>
-            <balance> {BALANCE} </balance>
+            <balance> {CONTRACT_BAL} </balance>
             <code> #parseByteStack({CONTRACT_CODE}) </code>
             <storage>
-{STORAGE}
+{CONTRACT_STORAGE}
             </storage>
             <origStorage>
-{ORIGSTORAGE}
+{CONTRACT_ORIGSTORAGE}
             </origStorage>
-            <nonce> {NONCE} </nonce>
+            <nonce> {CONTRACT_NONCE} </nonce>
+          </account>
+
+          <account>
+            <acctID> #CALLEE_ID </acctID>
+            <balance> {CALLEE_BAL} </balance>
+            <code> {CALLEE_CODE} </code>
+            <storage>
+                {CALLEE_STORAGE}
+            </storage>
+            <origStorage>
+                {CALLEE_ORIGSTORAGE}
+            </origStorage>
+            <nonce> {CALLEE_NONCE} </nonce>
           </account>
 
           <account>
@@ -120,11 +133,13 @@
     </ethereum>
     requires
      #rangeAddress(#CONTRACT_ID)
+     andBool #rangeAddress(#CALLEE_ID)
      andBool #rangeUInt(256, NOW)
      andBool #rangeUInt(128, BLOCK_NUM) // Solidity
 
      // Account address normality
      andBool #CONTRACT_ID  >Int 0 andBool (notBool #CONTRACT_ID  in #precompiledAccounts(BYZANTIUM))
+     andBool #CALLEE_ID  >Int 0 andBool (notBool #CALLEE_ID  in #precompiledAccounts(BYZANTIUM))
 
 {REQUIRES}
     ensures true
