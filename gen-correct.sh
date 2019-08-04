@@ -3,7 +3,7 @@
 set -e
 
 KDIST=/home/sbugrara/k-distributed/
-
+(cd $KDIST/kworker; cargo build)
 FPATH=multisig13
 (cd $KDIST/kworker; cargo build)
 (cd $FPATH; make deps clean split-proof-tests)
