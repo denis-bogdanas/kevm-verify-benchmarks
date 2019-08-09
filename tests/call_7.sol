@@ -1,6 +1,5 @@
 pragma solidity 0.5.0;
 
-//encoding
 contract call_7 {
 
     bytes32 constant EIP712DOMAINTYPE_HASH = 0xd87cd6ef79d4e2b95e15ce8abf732db51ec771f1ca2edccf22a46c729ac56472;
