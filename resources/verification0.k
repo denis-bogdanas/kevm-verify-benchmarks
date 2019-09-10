@@ -10,6 +10,8 @@ module VERIFICATION
     imports EDSL-STATIC-ARRAY
     imports LEMMAS
 
+    rule Rsstore(BYZANTIUM, NEW, CURR, ORIG) => 0 requires NEW =/=Int 0
+
   // ########################
   // Memory Usage
   // ########################
