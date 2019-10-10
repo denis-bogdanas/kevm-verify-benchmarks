@@ -129,7 +129,8 @@ ifneq ($(strip $(LOCAL_LEMMAS)),)
 	cp ../resources/evm.smt2 $@
 	mv $@/verification$(VERIFICATION_NUM).k $@/verification.k
 endif
-	bash $(RESOURCES)/$(COMPILE_SCRIPT)
+#	Bytefile generation script. Not working yet.
+#	bash $(RESOURCES)/$(COMPILE_SCRIPT)
 	@echo export SEMANTICS=$(KEVM_REPO_DIR) > $@/.env
 
 ifneq ($(wildcard $(SPEC_INI:.ini=.md)),)
