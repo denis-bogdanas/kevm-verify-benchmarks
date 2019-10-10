@@ -35,7 +35,7 @@ pipeline {
     }
 */
     stage('Run Proofs') {
-      when { changeRequest() }
+//      when { changeRequest() }
       steps {
         ansiColor('xterm') {
           sh '''
