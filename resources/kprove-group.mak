@@ -41,8 +41,9 @@ NPROCS?=1
 
 jenkins:
 	set -e; \
+	$(MAKE) -C $(word 1,$(SUBDIRS)) clean-deps deps; \
 	for i in $(SUBDIRS); do \
-		$(MAKE) -C $$i all; \
+		$(MAKE) -C $$i clean split-proof-tests; \
 		$(MAKE) -C $$i test -j$(NPROCS); \
-		$(MAKE) -C $$i clean-deps; \
 	done
+	$(MAKE) -C $(word 1,$(SUBDIRS)) clean-deps
