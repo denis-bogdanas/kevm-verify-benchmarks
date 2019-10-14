@@ -62,7 +62,7 @@ K_LIBS:=$(abspath $(K_REPO_DIR)/k-distribution/target/release/k/lib/java)
 
 JAVA_MAIN:=java -Dfile.encoding=UTF-8 -Djava.awt.headless=true -Xms1024m -Xmx8192m -Xss32m -XX:+TieredCompilation  -ea -cp "$(K_LIBS)/*" org.kframework.main.Main -kprove
 
-KPROVE:=$(JAVA_MAIN) -v --debug -d $(KEVM_REPO_DIR)/.build/java -m VERIFICATION --z3-impl-timeout 500 \
+KPROVE:=$(JAVA_MAIN) -v --debug -d $(KEVM_REPO_DIR)/.build/defn/java -m VERIFICATION --z3-impl-timeout 500 \
         --deterministic-functions --no-exc-wrap \
         --cache-func-optimized --no-alpha-renaming --format-failures --boundary-cells k,pc \
         --log-cells k,output,statusCode,localMem,pc,gas,wordStack,callData,accounts,memoryUsed,\#pc,\#result,\#target \
@@ -93,9 +93,9 @@ deps: $(K_REPO_DIR) $(KEVM_REPO_DIR) $(TANGLER)
 
 kevmc:
 	cd $(KEVM_REPO_DIR) \
-		&& rm -rf .build/java/* \
+		&& rm -rf .build/defn/java/* \
 		&& make java-defn \
-		&& $(K_BIN)/kompile -v --debug --backend java -I .build/java -d .build/java --main-module ETHEREUM-SIMULATION --syntax-module ETHEREUM-SIMULATION .build/java/driver.k
+		&& $(K_BIN)/kompile -v --debug --backend java -I .build/defn/java -d .build/defn/java --main-module ETHEREUM-SIMULATION --syntax-module ETHEREUM-SIMULATION .build/defn/java/driver.k
 
 $(K_REPO_DIR):
 	git clone $(K_REPO_URL) $(K_REPO_DIR)
@@ -111,7 +111,7 @@ $(KEVM_REPO_DIR):
 		&& git reset --hard $(KEVM_VERSION) \
 		&& make tangle-deps \
 		&& make defn \
-		&& $(K_BIN)/kompile -v --debug --backend java -I .build/java -d .build/java --main-module ETHEREUM-SIMULATION --syntax-module ETHEREUM-SIMULATION .build/java/driver.k
+		&& $(K_BIN)/kompile -v --debug --backend java -I .build/defn/java -d .build/defn/java --main-module ETHEREUM-SIMULATION --syntax-module ETHEREUM-SIMULATION .build/defn/java/driver.k
 
 $(TANGLER):
 	git submodule update --init -- $(PANDOC_TANGLE_SUBMODULE)
