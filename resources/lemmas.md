@@ -88,7 +88,7 @@ The following lemmas essentially capture the signature extraction mechanisms.
 It reduces the reasoning efforts of the underlying theorem prover, factoring out the essence of the byte-twiddling operations.
 
 ```k
-    syntax Bool ::= #isRegularWordStack ( WordStack ) [function]
+    syntax Bool ::= #isRegularWordStack ( ByteArray ) [function]
  // -------------------------------------------------------
     rule #isRegularWordStack(N : WS => WS)
     rule #isRegularWordStack(.WordStack) => true
@@ -107,16 +107,16 @@ It reduces the reasoning efforts of the underlying theorem prover, factoring out
        andBool #sizeWordStack(WS) >=Int log256Int(D)
        andBool #noOverflow(WS)
 
-    syntax Bool ::= #noOverflow    ( WordStack ) [function]
-                  | #noOverflowAux ( WordStack ) [function]
+    syntax Bool ::= #noOverflow    ( ByteArray ) [function]
+                  | #noOverflowAux ( ByteArray ) [function]
  // -------------------------------------------------------
     rule #noOverflow(WS) => #sizeWordStack(WS) <=Int 32 andBool #noOverflowAux(WS)
 
     rule #noOverflowAux(W : WS)     => 0 <=Int W andBool W <Int 256 andBool #noOverflowAux(WS)
     rule #noOverflowAux(.WordStack) => true
 
-    syntax WordStack ::= #asByteStackInWidth    ( Int, Int )                 [function]
-                       | #asByteStackInWidthAux ( Int, Int, Int, WordStack ) [function]
+    syntax ByteArray ::= #asByteStackInWidth    ( Int, Int )                 [function]
+                       | #asByteStackInWidthAux ( Int, Int, Int, ByteArray ) [function]
  // -----------------------------------------------------------------------------------
     rule #asByteStackInWidth(X, N) => #asByteStackInWidthAux(X, N -Int 1, N, .WordStack)
       requires #rangeBytes(N, X)

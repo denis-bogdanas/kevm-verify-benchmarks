@@ -313,14 +313,14 @@ module VERIFICATION
     syntax KItem ::= "#handlePaymentSpecApplied"
  // --------------------------------------------
 
-syntax Int  ::= #fii        ( WordStack ,       Int , WordStack , Map , Int ) [function, smtlib(fii)] // first-invalid-signature-index
-syntax Bool ::= #isValid    ( WordStack , Int , Int , WordStack , Map , Int , Bool ) [function, smtlib(isValid)]
-syntax Bool ::= #isValidSig ( WordStack , Int , Int , WordStack , Map , Int ) [function, smtlib(isValidSig)]
-syntax Bool ::= #isValidSignature ( Int , WordStack , WordStack ) [function, smtlib(isValidSignature)] // ISignatureValidator(currentOwner).isValidSignature(data, contractSignature)
-syntax Int  ::= #signer ( WordStack , Int , Int ) [function]
-syntax Int  ::= #sigR   ( WordStack , Int ) [function]
-syntax Int  ::= #sigS   ( WordStack , Int ) [function]
-syntax Int  ::= #sigV   ( WordStack , Int ) [function]
+syntax Int  ::= #fii        ( ByteArray ,       Int , ByteArray , Map , Int ) [function, smtlib(fii)] // first-invalid-signature-index
+syntax Bool ::= #isValid    ( ByteArray , Int , Int , ByteArray , Map , Int , Bool ) [function, smtlib(isValid)]
+syntax Bool ::= #isValidSig ( ByteArray , Int , Int , ByteArray , Map , Int ) [function, smtlib(isValidSig)]
+syntax Bool ::= #isValidSignature ( Int , ByteArray , ByteArray ) [function, smtlib(isValidSignature)] // ISignatureValidator(currentOwner).isValidSignature(data, contractSignature)
+syntax Int  ::= #signer ( ByteArray , Int , Int ) [function]
+syntax Int  ::= #sigR   ( ByteArray , Int ) [function]
+syntax Int  ::= #sigS   ( ByteArray , Int ) [function]
+syntax Int  ::= #sigV   ( ByteArray , Int ) [function]
 
 rule 0 <=Int #fii(_,_,_,_,_)             => true
 rule         #fii(_,_,_,_,_) <Int pow256 => true
@@ -381,7 +381,7 @@ rule #signer(SIGS, I, DATA_HASH) => #symEcrec(#ecrecData(SIGS, I, DATA_HASH)) re
 rule #signer(SIGS, I, DATA_HASH) => 0                                         requires I >=Int 0 andBool   #sigV(SIGS, I) =/=Int 0 andBool #sigV(SIGS, I) =/=Int 1   andBool         #ecrecEmpty(#ecrecData(SIGS, I, DATA_HASH))
 rule #signer(SIGS, I, DATA_HASH) => #sigR(SIGS, I)                            requires I >=Int 0 andBool ( #sigV(SIGS, I)  ==Int 0  orBool #sigV(SIGS, I)  ==Int 1 )
 
-syntax WordStack ::= #ecrecData ( WordStack , Int , Int ) [function]
+syntax ByteArray ::= #ecrecData ( ByteArray , Int , Int ) [function]
 rule #ecrecData(SIGS, I, DATA_HASH) => #encodeArgs(#bytes32(DATA_HASH), #uint8(#sigV(SIGS,I)), #bytes32(#sigR(SIGS,I)), #bytes32(#sigS(SIGS,I)))
 
 // definition of #sigR, #sigS, #sigV

@@ -7,10 +7,10 @@ module EVM-DATA-MAP-SYMBOLIC [symbolic]
 
     rule ( WS1 ++ WS2 ) ++ WS3 => WS1 ++ ( WS2 ++ WS3 )
 
-    syntax WordStack ::= #bufSeg ( WordStack , Int , Int ) [function, smtlib(bufSeg)] // BUFFER, START, WIDTH
-    syntax Int       ::= #bufElm ( WordStack , Int )       [function] // BUFFER, INDEX
+    syntax ByteArray ::= #bufSeg ( ByteArray , Int , Int ) [function, smtlib(bufSeg)] // BUFFER, START, WIDTH
+    syntax Int       ::= #bufElm ( ByteArray , Int )       [function] // BUFFER, INDEX
 
-    syntax Bool ::= #isBuf ( WordStack ) [function]
+    syntax Bool ::= #isBuf ( ByteArray ) [function]
     rule #isBuf(#buf(_,_)) => true
     rule #isBuf(#bufSeg(_,_,_)) => true
 
@@ -26,21 +26,21 @@ module EVM-DATA-MAP-SYMBOLIC [symbolic]
       requires 0 <=Int START andBool START +Int WIDTH <=Int WIDTH0
 
     // Auxiliary function to make rules compatible with simplification `rule WS ++ .WordStack => WS`
-    syntax WordStack ::= #takeAux ( Int , WordStack , WordStack ) [function]
+    syntax ByteArray ::= #takeAux ( Int , ByteArray , ByteArray ) [function]
  // ------------------------------------------------------------------------
     rule #take(N, BUF      ) => #takeAux(N, BUF, .WordStack)               requires #isBuf(BUF)
     rule #take(N, BUF ++ WS) => #takeAux(N, BUF, WS)                       requires #isBuf(BUF)
     rule #takeAux(N, BUF, WS) => #bufSeg(BUF, 0, N)                        requires 0 <=Int N andBool N <=Int #sizeBuffer(BUF)
     rule #takeAux(N, BUF, WS) => BUF ++ #take(N -Int #sizeBuffer(BUF), WS) requires N >Int #sizeBuffer(BUF)
 
-    syntax WordStack ::= #dropAux ( Int , WordStack , WordStack ) [function]
+    syntax ByteArray ::= #dropAux ( Int , ByteArray , ByteArray ) [function]
  // ------------------------------------------------------------------------
     rule #drop(N, BUF      ) => #dropAux(N, BUF, .WordStack)                    requires #isBuf(BUF)
     rule #drop(N, BUF ++ WS) => #dropAux(N, BUF, WS)                            requires #isBuf(BUF)
     rule #dropAux(N, BUF, WS) => #bufSeg(BUF, N, #sizeBuffer(BUF) -Int N) ++ WS requires 0 <=Int N andBool N <=Int #sizeBuffer(BUF)
     rule #dropAux(N, BUF, WS) => #drop(N -Int #sizeBuffer(BUF), WS)             requires N >=Int #sizeBuffer(BUF)
 
-    syntax Int ::= #getElmAux ( WordStack , WordStack , Int ) [function]
+    syntax Int ::= #getElmAux ( ByteArray , ByteArray , Int ) [function]
  // --------------------------------------------------------------------
     rule (BUF      ) [ N ] => #getElmAux(BUF, .WordStack, N)      requires #isBuf(BUF)
     rule (BUF ++ WS) [ N ] => #getElmAux(BUF, WS, N)              requires #isBuf(BUF)
@@ -51,7 +51,7 @@ module EVM-DATA-MAP-SYMBOLIC [symbolic]
     rule #sizeWordStack ( BUF ++ WS, SIZE ) => #sizeWordStack(WS, SIZE +Int #sizeBuffer(BUF)) requires #isBuf(BUF)
     rule #sizeWordStack ( BUF      , SIZE ) =>                    SIZE +Int #sizeBuffer(BUF)  requires #isBuf(BUF)
 
-    syntax Int ::= #sizeBuffer ( WordStack ) [function]
+    syntax Int ::= #sizeBuffer ( ByteArray ) [function]
  // ---------------------------------------------------
     rule #sizeBuffer ( #buf(N,_) )      => N
     rule #sizeBuffer ( #bufSeg(_,_,N) ) => N
@@ -67,8 +67,8 @@ module EVM-DATA-MAP-SYMBOLIC [symbolic]
     rule select(store(M, K0, V), K) => V            requires K0  ==Int K
     rule select(store(M, K0, V), K) => select(M, K) requires K0 =/=Int K
 
-    syntax Map       ::= storeRange  ( Map , Int , Int , WordStack ) [function, smtlib(storeRange) ]
-    syntax WordStack ::= selectRange ( Map , Int , Int )             [function, smtlib(selectRange)]
+    syntax Map       ::= storeRange  ( Map , Int , Int , ByteArray ) [function, smtlib(storeRange) ]
+    syntax ByteArray ::= selectRange ( Map , Int , Int )             [function, smtlib(selectRange)]
  // ------------------------------------------------------------------------------------------------
     rule select(storeRange(M, START, WIDTH, WS), K) => WS[K -Int START] requires          START <=Int K andBool K <Int START +Int WIDTH
     rule select(storeRange(M, START, WIDTH, WS), K) => select(M, K)     requires notBool (START <=Int K andBool K <Int START +Int WIDTH)
