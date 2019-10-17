@@ -47,3 +47,9 @@ jenkins:
 		$(MAKE) -C $$i test -j$(NPROCS); \
 	done
 	$(MAKE) -C $(word 1,$(SUBDIRS)) clean-deps
+
+split-proof-tests:
+	set -e; \
+	for i in $(SUBDIRS); do \
+		$(MAKE) -C $$i clean split-proof-tests; \
+	done
