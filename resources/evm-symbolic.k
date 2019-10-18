@@ -10,10 +10,10 @@ module EVM-SYMBOLIC     [symbolic]
   // ########################
 
     //Symbolic wrapper over the argument of #ecrec, no implementation.
-    syntax Int ::= #symEcrec ( WordStack )   [function]
+    syntax Int ::= #symEcrec ( ByteArray )   [function]
 
     //Symbolic predicate representing whether output of #ecrec is empty. No implementation.
-    syntax Bool ::= #ecrecEmpty( WordStack ) [function]
+    syntax Bool ::= #ecrecEmpty( ByteArray ) [function]
 
     // Range for #symEcrec
 
